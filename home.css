@@ -1,0 +1,12 @@
+html,body{
+background-image: linear-gradient(rgb(41, 214, 245), rgb(46, 57, 212));
+background-size: cover;
+height: 100%;
+}
+
+.nav-tabs{
+    background-color: white;
+}
+
+
+
