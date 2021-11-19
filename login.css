@@ -26,6 +26,7 @@ width: 200px;
 
 #link,#link2{
     color:yellow;
+    text-decoration: underline;
 }
 
 p{
