@@ -1,5 +1,5 @@
 html,body{
-background-image: linear-gradient(rgb(41, 214, 245), rgb(46, 57, 212));
+background-image: linear-gradient(#b0f7fc, #ffffff);
 background-size: cover;
 height: 100%;
 }
@@ -8,5 +8,34 @@ height: 100%;
     background-color: white;
 }
 
+#scheduleClasses .card{
+    background-color: #e3f2fd;
+}
+
+#scheduleList .card{
+    min-width: 210px;
+    min-height: 100px;
+    max-height: 200px;
+    max-width: 210px;
+    margin-top: 20px;
+}
+
+#scheduleList{
+    overflow: scroll;
+    height: 60vh;
+}
 
 
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+border-radius: 10px;
+background: #ccc;  
+}
+
+::-webkit-scrollbar-thumb:hover {
+background: #999;  
+}
