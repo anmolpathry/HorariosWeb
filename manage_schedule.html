@@ -15,7 +15,10 @@
 <div>
   <ul class="nav nav-tabs">
     <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="#">Home</a>
+      <a class="nav-link" aria-current="page" href="#">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="#">Manage Schedule</a>
     </li>
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">User <i
@@ -32,153 +35,97 @@
     </li>
   </ul>
 
-
+  <div id="content" class="row">
     <div id="left-side" class="col-5 sm-1">
-      <h2>Create and Manage your Schedules.</h1>
-      <div id="scheduleList" class="container mt-2 d-flex flex-wrap justify-content-around">
+      <h3>Subjects</h3>
+      <div id="scheduleList" class="container mt-2">
 
-        <div class="card-deck">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Otoño 2021</small>
-            </div>
-          </div>
-          
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Primavera 2022</small>
-            </div>
-          </div>
+          <div class="list-group">
+            <ul class="list-group"> 
+              <li class="list-group-item list-group-item-warning d-flex justify-content-between align-items-center">
+                <p>Department</p>
+                <p>Credits</p>
+                <p>Name</p>
+                <span><button id="search" type="button" class="btn btn-dark btn-sm"><i style="color:white;" class="fas fa-search"></i></button></span>
+              </li>
+      
+            </ul>
 
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Verano 2020</small>
-            </div>
-          </div>
+            <ul class="list-group">
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <p id="department">DESI</p>
+                <p id="credits">10</p>
+                <p id="Name">Microprocesadores</p>
+                <span><button id="details" type="button" class="btn btn-info btn-sm"><i style="color:white;" class="fas fa-info-circle"></i></button></span>
+              </li>
 
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Verano 2020</small>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Verano 2020</small>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Verano 2020</small>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Verano 2020</small>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Verano 2020</small>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Verano 2020</small>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Verano 2020</small>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Verano 2020</small>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Verano 2020</small>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Verano 2020</small>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Verano 2020</small>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Verano 2020</small>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Verano 2020</small>
-            </div>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <p id="department">DESI</p>
+                <p id="credits">8</p>
+                <p id="Name">Memoria Dinámica</p>
+                <span><button id="details" type="button" class="btn btn-info btn-sm"><i style="color:white;" class="fas fa-info-circle"></i></button></span>
+              </li>
+
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <p id="department">MAF</p>
+                <p id="credits">8</p>
+                <p id="Name">Cálculo Integral</p>
+                <span><button id="details" type="button" class="btn btn-info btn-sm"><i style="color:white;" class="fas fa-info-circle"></i></button></span>
+              </li>
+
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <p id="department">DFH</p>
+                <p id="credits">4</p>
+                <p id="Name">Fe y Cultura</p>
+                <span><button id="details" type="button" class="btn btn-info btn-sm"><i style="color:white;" class="fas fa-info-circle"></i></button></span>
+              </li>
+
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <p id="department">DESI</p>
+                <p id="credits">10</p>
+                <p id="Name">Microprocesadores</p>
+                <span><button id="details" type="button" class="btn btn-info btn-sm"><i style="color:white;" class="fas fa-info-circle"></i></button></span>
+              </li>
+
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <p id="department">DESI</p>
+                <p id="credits">8</p>
+                <p id="Name">Memoria Dinámica</p>
+                <span><button id="details" type="button" class="btn btn-info btn-sm"><i style="color:white;" class="fas fa-info-circle"></i></button></span>
+              </li>
+
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <p id="department">MAF</p>
+                <p id="credits">8</p>
+                <p id="Name">Cálculo Integral</p>
+                <span><button id="details" type="button" class="btn btn-info btn-sm"><i style="color:white;" class="fas fa-info-circle"></i></button></span>
+              </li>
+
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <p id="department">DFH</p>
+                <p id="credits">4</p>
+                <p id="Name">Fe y Cultura</p>
+                <span><button id="details" type="button" class="btn btn-info btn-sm"><i style="color:white;" class="fas fa-info-circle"></i></button></span>
+              </li>
+
+            </ul>
+            
           </div>
           
         </div>
 
       </div>
 
-    </div>
-  </div>
 
-  <div id="content" class="row">
     <div id="right-side" class="col-sm-6 ml-5">
+      <div class="row justify-content-between">
+        <div class="col">
+          <h3 style="color:rgb(0, 0, 0); margin-left:10px;">Horario 1 </h3>
+        </div>
+        <div class="col-sm-md-2 mr-3">
+          <button id="pencil" type="button" class="btn btn-dark"> <i style="color:white;" class="fas fa-pencil-alt"></i></button>
+        </div>
+      </div>
       <table class="table table-sm table-bordered">
         <thead class="table-secondary">
           <tr>
@@ -252,28 +199,24 @@
         </tbody>
       </table>
 
-      <div class="row justify-content-between">
-        <div class="col">
-          <h4 style="color:rgb(0, 0, 0); margin-left:10px;">Horario 1 </h4>
-        </div>
-        <div class="col-sm-md-2 mr-3">
-          <button id="pencil" type="button" class="btn btn-light"> <i style="color:black;" class="fas fa-pencil-alt"></i></button>
-          <button id="trash" type="button" class="btn btn-light"> <i style="color:black;" class="fas fa-trash-alt"></i></button>
-        </div>
-      </div>
-
       <div id="scheduleClasses" class="row">
         <div class="col">
           <div class="card">
             <div class="card-body">
+              <button id="trash" type="button" class="btn btn-dark"> <i style="color:white;" class="fas fa-trash-alt"></i></button>
               <h5 class="card-title">Una clase</h5>
             </div>
           </div>
         </div>
-          
+
+        <div class="col-2">
+        <button id="save" type="button" class="btn btn-info btn-block">Save</button>
+        <button id="cancel" type="button" class="btn btn-primary btn-block">Cancel</button>
+        </div>  
       </div>
 
     </div>
+  </div>
   </body>
 
 </html>
