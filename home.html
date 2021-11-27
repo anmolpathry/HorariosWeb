@@ -36,22 +36,18 @@
       </ul>
       <ul class="navbar-nav ml-auto"> 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle mr-2" href="#" data-toggle="dropdown">Welcome, User <i class="fas fa-user-circle"></i></a>      
+          <a class="nav-link dropdown-toggle mr-4" href="#" data-toggle="dropdown">Welcome, User <i class="fas fa-user-circle"></i></a>      
           <div class="dropdown-menu">
               <a class="dropdown-item" href="#" data-toggle="modal" data-target="#changepassword.html">Change Password</a>
               <a class="dropdown-item" href="#" data-toggle="modal" data-target="#login.html">Log Out</a>
-              <div class="dropdown-divider"></div>
-              <div class="dropdown-item" href="#">Mis pedidos</div>
           </div>
         </li> 
       </ul>
     </div>
-  </nav>
-
-  
+  </nav>  
 
   <div id="content" class="row justify-content-center mt-4 pt-2 d-flex flex-wrap">
-    <div id="left-side" class="col-sm-6 ml-2 mr-2">
+    <div id="left-side" class="col-sm-6 ml-1 mr-1">
       <table class="table table-sm table-bordered">
         <thead class="table-secondary">
           <tr>
@@ -146,74 +142,79 @@
         </tbody>
       </table>
 
-      <div class="row justify-content-between">
+      <div class="row justify-content-between align-items-center">
         <div class="col">
           <h4 style="color:rgb(0, 0, 0); margin-left:10px;">Horario 1 </h4>
         </div>
         <div class="col-sm-md-2 mr-3">
-          <button id="pencil" type="button" class="btn btn-light"> <i style="color:black;" class="fas fa-pencil-alt"></i></button>
-          <button id="trash" type="button" class="btn btn-light"> <i style="color:black;" class="fas fa-trash-alt"></i></button>
+          <button id="editSchedule" type="button" class="btn btn-lg" style="background-color: transparent;"> <i style="color:#678da8; " class="fas fa-pen"></i></button>
+          <button id="deleteSchedule" type="button" class="btn btn-lg" style="background-color: transparent;"> <i style="color:#678da8;" class="fas fa-trash-alt"></i></button>
         </div>
       </div>
 
       <div id="scheduleClasses" class="container mt-3 justify-content-center">
-
-        <div class="row">
-          <div class="col-auto p-0">
-            <div id="cardLeft" class="card">
-              <div class="card-body">
-                <h6 class="card-title">Microprocesadores</h6>
-                <p>DESI13EF</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col p-0 mr-3">
-            <div id="cardRight" class="card">
-              <div class="card-body d-flex justify-content-around align-middle">
-                <card>Professor: Mario Peredo</card>
-                <card>Classroom: A-208</card>
-                <card>Language: Spanish</card>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-auto p-0">
-            <div id="cardLeft" class="card">
-              <div class="card-body">
+        <div class="row mb-3">
+          <div class="col-4 p-0" style="width: 28%;flex: 0 0 28%;max-width: 28%; ">
+            <div id="cardLeft" class="card" >
+              <div class="card-body d-flex align-items-center flex-wrap justify-content-center">
+                <div>
                 <h6 class="card-title">Cálculo Multivariable</h6>
                 <p>DESI13EF</p>
+                </div>
               </div>
             </div>
           </div>
 
           <div class="col p-0 mr-3">
             <div id="cardRight" class="card">
-              <div class="card-body d-flex justify-content-around align-middle">
-                <card>Professor: Mario Peredo frgrgr </card>
-                <card>Classroom: A-208 fregrgr</card>
-                <card>Language: Spanish gtrggtg</card>
+              <div class="card-body d-flex justify-content-around align-middle flex-wrap">
+                <card>Professor: Maria rosales </card>
+                <card>Classroom: A-208</card>
+                <card>Language: Spanish</card>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-auto p-0">
-            <div id="cardLeft" class="card">
-              <div class="card-body">
-                <h6 class="card-title">Microprocesadores</h6>
+        <div class="row mb-3">
+          <div class="col-4 p-0" style="width: 28%;flex: 0 0 28%;max-width: 28%; ">
+            <div id="cardLeft" class="card" >
+              <div class="card-body d-flex align-items-center flex-wrap justify-content-center">
+                <div>
+                <h6 class="card-title">Cálculo Multivariable</h6>
                 <p>DESI13EF</p>
+                </div>
               </div>
             </div>
           </div>
 
           <div class="col p-0 mr-3">
             <div id="cardRight" class="card">
-              <div class="card-body d-flex justify-content-around align-middle">
-                <card>Professor: Mario Peredo</card>
+              <div class="card-body d-flex justify-content-around align-middle flex-wrap">
+                <card>Professor: Maria rosales </card>
+                <card>Classroom: A-208</card>
+                <card>Language: Spanish</card>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-4 p-0" style="width: 28%;flex: 0 0 28%;max-width: 28%; ">
+            <div id="cardLeft" class="card" >
+              <div class="card-body d-flex align-items-center flex-wrap justify-content-center">
+                <div>
+                <h6 class="card-title">Cálculo Multivariable</h6>
+                <p>DESI13EF</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col p-0 mr-3">
+            <div id="cardRight" class="card">
+              <div class="card-body d-flex justify-content-around align-middle flex-wrap">
+                <card>Professor: Maria rosales </card>
                 <card>Classroom: A-208</card>
                 <card>Language: Spanish</card>
               </div>
@@ -221,140 +222,213 @@
           </div>
         </div>
         
-
-        
+    </div>
     </div>
 
-    </div>
-
-    <div id="right-side" class="col-5 sm-1-md-3-lg-3-xl-4">
+    <div id="right-side" class="col-5 sm-5-md-3-lg-3-xl-4">
       <h3>Create and Manage your Schedules.</h3>
 
-      <div class="form-group row">
-        <div class="col-lg-xl-7 ml-3">
-          <div class="input-group rounded mb-3 mt-4">
-            <input type="search" class="form-control rounded bg-transparent border-secondary" placeholder="Search" aria-label="Search"
-            aria-describedby="search-addon" />
-            <div class="input-group-append">
-              <span class="input-group-text border-secondary" id="search-addon">
-                <i class="fas fa-search"></i>
-              </span>
+      <div class="row justify-content-between align-items-center">
+        <div id="searchBar" class="col">
+          <div class="form-group row">
+            <div class="col-lg-xl-7 ml-3">
+              <div class="input-group rounded mb-3 mt-4">
+                <input type="search" class="form-control rounded bg-transparent border-secondary" placeholder="Search" aria-label="Search"
+                aria-describedby="search-addon"/>
+                <div class="input-group-append">
+                  <span class="input-group-text border-secondary" id="search-addon">
+                    <i class="fas fa-search"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div id="createSchedule" class="col-sm-md-2 mr-5">
+          
+          <a id="createScheduleButton" data-toggle="modal" data-target="#createScheduleModal" data-backdrop="false">
+            <i class="fa fa-plus-circle"></i>
+          </a>
+
+          <!--CreateScheduleModal-->
+          <div class="modal fade" id="createScheduleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header" style="background-color: #e0e0e0;">
+                  <h5 class="modal-title">New Schedule</h5>
+                </div>
+                <div class="modal-body">
+                  <div class="container-fluid">
+                    <div class="row">
+                      <div class="col-7">
+                        <div class="row">
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">Name</span>
+                            </div>
+                            <input required type="text" class="form-control col-10" id="scheduleName" placeholder="Name your schedule">
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">Period</span>
+                            </div>
+                            <select class="custom-select" id="inputGroupSelect02" min=2 max=3>
+                              <option value="Fall" selected>Fall</option>
+                              <option value="Spring">Spring</option>
+                              <option value="Summer">Summer</option>
+                            </select>
+                            <select class="custom-select" id="inputGroupSelect02">
+                              <option selected>Choose...</option>
+                              <option value="1">One</option>
+                              <option value="2">Two</option>
+                              <option value="3">Three</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4 ml-auto">
+                        <button type="button" class="btn btn-block" style="background-color: #f06e9d; color:white;">Create!</button>
+                        <button type="button" class="btn btn-block" style="background-color: #86b1cf; color:white;" data-dismiss="modal">Cancel</button>
+                      </div>
+                    </div>
+              
+                  </div>
+                </div>
+
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div id="scheduleList" class="container mt-2 d-flex flex-wrap justify-content-around pl-0">
+      <div id="scheduleList" class="container mt-2 d-flex flex-wrap  justify-content-center pl-0 align-items-center">
 
-        <div class="card-deck">
-          <div class="card">
-            <div class="card-body">
-              <h5 id="scheduleName" class="card-title">Horario1sssssssss sss</h5>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Otoño 2021</small>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h5 id="scheduleName" class="card-title">Horario1sssssssss sss</h5>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Otoño 2021</small>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h5 id="scheduleName" class="card-title">Horario1sssssssss sss</h5>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Otoño 2021</small>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h5 id="scheduleName" class="card-title">Horario1sssssssss sss</h5>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Otoño 2021</small>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h5 id="scheduleName" class="card-title">Horario1sssssssss sss</h5>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Otoño 2021</small>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h5 id="scheduleName" class="card-title">Horario1sssssssss sss</h5>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Otoño 2021</small>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h5 id="scheduleName" class="card-title">Horario1sssssssss sss</h5>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Otoño 2021</small>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h5 id="scheduleName" class="card-title">Horario1sssssssss sss</h5>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Otoño 2021</small>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h5 id="scheduleName" class="card-title">Horario1sssssssss sss</h5>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Otoño 2021</small>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h5 id="scheduleName" class="card-title">Horario1sssssssss sss</h5>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Otoño 2021</small>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h5 id="scheduleName" class="card-title">Horario1sssssssss sss</h5>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Otoño 2021</small>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h5 id="scheduleName" class="card-title">Horario1sssssssss sss</h5>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Otoño 2021</small>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h5 id="scheduleName" class="card-title">Horario1sssssssss sss</h5>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Otoño 2021</small>
-            </div>
-          </div>
-        
+        <div class="card-deck justify-content-center">
           
+          <div class="card">
+            <a id="scheduleLink" style="color: black;" class="button text-decoration-none" href>
+            <div class="card-body">
+              <h5 id="scheduleName" class="card-title">Horario1sssssssss sss</h5>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Otoño 2021</small>
+            </div>
+            </a>
+          </div>
+          <div class="card">
+            <a id="scheduleLink" style="color: black;" class="button text-decoration-none" href>
+            <div class="card-body">
+              <h5 id="scheduleName" class="card-title">Horario1sssssssss sss</h5>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Otoño 2021</small>
+            </div>
+            </a>
+          </div>
+          <div class="card">
+            <a id="scheduleLink" style="color: black;" class="button text-decoration-none" href>
+            <div class="card-body">
+              <h5 id="scheduleName" class="card-title">Horario1sssssssss sss</h5>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Otoño 2021</small>
+            </div>
+            </a>
+          </div>
+          <div class="card">
+            <a id="scheduleLink" style="color: black;" class="button text-decoration-none" href>
+            <div class="card-body">
+              <h5 id="scheduleName" class="card-title">Horario1sssssssss sss</h5>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Otoño 2021</small>
+            </div>
+            </a>
+          </div>
+          <div class="card">
+            <a id="scheduleLink" style="color: black;" class="button text-decoration-none" href>
+            <div class="card-body">
+              <h5 id="scheduleName" class="card-title">Horario1sssssssss sss</h5>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Otoño 2021</small>
+            </div>
+            </a>
+          </div>
+          <div class="card">
+            <a id="scheduleLink" style="color: black;" class="button text-decoration-none" href>
+            <div class="card-body">
+              <h5 id="scheduleName" class="card-title">Horario1sssssssss sss</h5>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Otoño 2021</small>
+            </div>
+            </a>
+          </div>
+          <div class="card">
+            <a id="scheduleLink" style="color: black;" class="button text-decoration-none" href>
+            <div class="card-body">
+              <h5 id="scheduleName" class="card-title">Horario1sssssssss sss</h5>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Otoño 2021</small>
+            </div>
+            </a>
+          </div>
+          <div class="card">
+            <a id="scheduleLink" style="color: black;" class="button text-decoration-none" href>
+            <div class="card-body">
+              <h5 id="scheduleName" class="card-title">Horario1sssssssss sss</h5>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Otoño 2021</small>
+            </div>
+            </a>
+          </div>
+          <div class="card">
+            <a id="scheduleLink" style="color: black;" class="button text-decoration-none" href>
+            <div class="card-body">
+              <h5 id="scheduleName" class="card-title">Horario1sssssssss sss</h5>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Otoño 2021</small>
+            </div>
+            </a>
+          </div>
+          <div class="card">
+            <a id="scheduleLink" style="color: black;" class="button text-decoration-none" href>
+            <div class="card-body">
+              <h5 id="scheduleName" class="card-title">Horario1sssssssss sss</h5>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Otoño 2021</small>
+            </div>
+            </a>
+          </div>
+          <div class="card">
+            <a id="scheduleLink" style="color: black;" class="button text-decoration-none" href>
+            <div class="card-body">
+              <h5 id="scheduleName" class="card-title">Horario1sssssssss sss</h5>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Otoño 2021</small>
+            </div>
+            </a>
+          </div>
+          <div class="card">
+            <a id="scheduleLink" style="color: black;" class="button text-decoration-none" href>
+            <div class="card-body">
+              <h5 id="scheduleName" class="card-title">Horario1sssssssss sss</h5>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Otoño 2021</small>
+            </div>
+            </a>
+          </div>
 
-      
         </div>
 
       </div>

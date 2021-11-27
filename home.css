@@ -5,31 +5,61 @@ margin: 0;
 background-repeat: no-repeat;
 background-attachment: fixed;
 max-width: 100%;
+overflow-x: hidden;
 }
 
 .navbar{
     box-shadow: 0 0 7px 0 rgba(0,0,0,0.1);
+    z-index: 2000;
+}
+
+#createScheduleModal{
+    position: absolute;
+    padding-top:47px;
+    padding-right: 30px;
+}
+
+#createScheduleModal .input-group-prepend span{
+    background-color: #f06e9d;
+    color: white;
+    border-width:0;
+}
+
+#createScheduleButton{
+    z-index: 1051 !important;
+    color: #f06e9d;
+    margin-left: 10px;
+    position: relative;
+}
+
+#createScheduleButton:hover{
+    color: #d65785;
+}
+
+#createScheduleButton i{
+    font-size: 40px;
+}
+
+#createScheduleButton i::before {
+    text-shadow: 0px 1px 2px rgba(0,0,0,0.4);
 }
 
 #scheduleClasses{
     overflow: scroll;
-    height: 30vh;
+    height: 28vh;
     width: 100%;
 }
 
 #scheduleClasses .card{
     background-color: #e3f2fd;
-    margin-bottom: 10px;
-    margin-top: 0;
-    height: 60px;
     overflow: hidden;
     box-shadow: 0 4px 4px 0 rgba(0,0,0,0.2);
+    height: 100%;
 }
 
-#scheduleClasses .card-body{
+#scheduleClasses #cardLeft .card-body{
     text-align: center;
-    font-size: 13px;
-    padding-top: 3mm;
+    font-size: 12px;
 }
 
 #scheduleClasses #cardLeft{
@@ -37,7 +67,6 @@ max-width: 100%;
     border-bottom-right-radius: 0;
     border-width: 0;
     background-color: #8fa7e4;
-    width: 200px;
 }
 
 #scheduleClasses #cardLeft .card-title, #scheduleClasses #cardLeft p {
@@ -47,51 +76,42 @@ max-width: 100%;
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
+    font-size: 15px;
 }
 
 #scheduleClasses #cardRight{
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     border-width: 0;
-    max-width: 31vw;
-}
-
-#scheduleClasses #cardRight .card-body{
-    padding-top: 4mm;
+    width: 100%;
 }
 
 #scheduleClasses #cardRight card{
-    font-size: 12px;
+    font-size: 11px;
     background-color: #5bc0de;
     color: white;
     padding: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
     border-radius: 7px;
+    margin: 5px;
     overflow: hidden;
-    white-space: nowrap;
 }
 
 /*Medium devices*/
 @media only screen and (min-width: 768px) {
-    #scheduleClasses #cardRight card{
-        width: 120px;
-        height: 30px;
-    }
+    
 }
 
 /*Large devices*/
 @media only screen and (min-width: 992px) {
-    #scheduleClasses #cardRight card{
-        width: 180px;
-        height: 30px;
-    }
+    
 }
 
 
 #scheduleList{
     overflow: scroll;
-    height: 55vh;
+    height: 63.8vh;
     width: 100%;
 }
 
@@ -100,16 +120,30 @@ max-width: 100%;
     min-height: 90px;
     max-height: 90px;
     max-width: 150px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     margin-top: 0;
     text-align: center;
     box-shadow: 2px 2px 2px 0 rgba(0,0,0,0.5);
+    border-color: #999;
+    border-width: 0px;
+
+    border-radius: 5px;
+}
+
+#scheduleList .card-body:hover{
+    background-color: #c2d3df;
+}
+#scheduleList .card-body:active{
+    background-color: #8fa7e4;
 }
 
 #scheduleList .card-body{  
     min-height: 60px;
     max-height: 60px;   
     background-color: #e3f2fd;
+    border-radius: 5px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 #scheduleList #scheduleName{  
@@ -142,6 +176,10 @@ max-width: 100%;
     width: auto;
 }
 
+.table thead tr h{
+    color: #5bc0de;
+}
+
 .table td p:first-of-type{
     overflow:hidden;
     display: -webkit-box;
@@ -171,3 +209,7 @@ max-width: 100%;
 ::-webkit-scrollbar-thumb:hover {
     background: #999;  
 }
+
+::-webkit-scrollbar-corner {
+    background-color: transparent;
+    }
