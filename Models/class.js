@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 mongoose.connect(mongoDB, { useNewUrlParser: true });
 
 let classSchema = mongoose.Schema({
-    key: {
+    code: {
         type: String,
         required: true
     },
