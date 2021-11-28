@@ -1,0 +1,28 @@
+{
+  "name": "horariosweb",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js --ignore 'app/data*'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anmolpathry/HorariosWeb.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anmolpathry/HorariosWeb/issues"
+  },
+  "homepage": "https://github.com/anmolpathry/HorariosWeb#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.13"
+  },
+  "devDependencies": {},
+  "description": ""
+}
