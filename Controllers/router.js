@@ -2,15 +2,46 @@
 
 const express = require('express');
 const router = express.Router();
-const userRouter = require('../routes/users');
-const subjectRouter = require('../routes/subjects');
-const classRouter = require('../routes/classes');
 const path = require('path');
+const validateUtils = require('./validate_utils');
+const userHandler = require('./user_handler');
+const classHandler = require('./class_handler');
+const subjectHandler = require('./subject_handler');
 
-router.use('/users', validateUser, userRouter);
-router.use('/subjects', validateAdmin, subjectRouter);
-router.use('/classes', validateAdmin, classRouter);
+router.use('/users', validateUtils.validateUser);
+router.use('/subjects', validateUtils.validateAdmin);
+router.use('/classes', validateUtils.validateAdmin);
 
+//USERS
+router.route('/users/')
+  .get((req, res) => userHandler.getUsers(req, res))
+  .post((req, res) => userHandler.createUser(req, res));
+
+router.route('/users/:email')
+  .get((req, res) => userHandler.getUserByEmail(req, res))
+  .put((req, res) => userHandler.updateUser(req, res));
+
+//CLASSES
+router.route('/classes/')
+    .get((req, res) => classHandler.getClasses(req, res))
+    .post((req, res) => classHandler.createClass(req, res));
+
+router.route('/classes/:code')
+    .get((req, res) => classHandler.getClassByCode(req, res))
+    .put((req, res) => classHandler.updateClass(req, res))
+    .delete((req, res) => classHandler.deleteClass(req, res));
+
+//SUBJECTS
+router.route('/subjects/')
+    .get((req, res) => subjectHandler.getSubjects(req, res))
+    .post((req, res) => subjectHandler.createSubject(req, res));
+
+router.route('/subjects/:name')
+  .get((req, res) => subjectHandler.getSubjectByName(req, res))
+  .put((req, res) => subjectHandler.updateSubject(req, res))
+  .delete((req, res) => subjectHandler.deleteSubject(req, res));
+
+//VIEWS
 router.get('/:var(home)?', (req, res) => {
     res.sendFile(path.join(__dirname, "../Views/home.html"));
 });
@@ -38,13 +69,5 @@ router.get('/admin-subjects', (req, res) => {
 router.get('/admin-classes', (req, res) => {
     res.sendFile(path.join(__dirname, "../Views/admin_classes.html"));
 });
-
-function validateAdmin(req, res, next) {
-    //
-}
-
-function validateUser(req, res, next) {
-    //
-}
 
 module.exports = router;
