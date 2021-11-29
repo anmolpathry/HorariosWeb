@@ -1,6 +1,6 @@
 "use strict";
 const mongoose = require('mongoose');
-const classSchema = require("./Class");
+const groupSchema = require("./group");
 mongoose.connect(mongoDB, { useNewUrlParser: true });
 
 let scheduleSchema = mongoose.Schema({
@@ -9,7 +9,7 @@ let scheduleSchema = mongoose.Schema({
         required: true
     },
     classes: {
-        type: [classSchema],
+        type: [groupSchema],
         required: true
     },
     period: {

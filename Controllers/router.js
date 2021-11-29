@@ -5,12 +5,12 @@ const router = express.Router();
 const path = require('path');
 const validateUtils = require('./validate_utils');
 const userHandler = require('./user_handler');
-const classHandler = require('./class_handler');
+const groupHandler = require('./group_handler');
 const subjectHandler = require('./subject_handler');
 
 router.use('/users', validateUtils.validateUser);
 router.use('/subjects', validateUtils.validateAdmin);
-router.use('/classes', validateUtils.validateAdmin);
+router.use('/groups', validateUtils.validateAdmin);
 
 //USERS
 router.route('/users/')
@@ -21,15 +21,15 @@ router.route('/users/:email')
   .get((req, res) => userHandler.getUserByEmail(req, res))
   .put((req, res) => userHandler.updateUser(req, res));
 
-//CLASSES
-router.route('/classes/')
-    .get((req, res) => classHandler.getClasses(req, res))
-    .post((req, res) => classHandler.createClass(req, res));
+//GROUPS
+router.route('/groups/')
+    .get((req, res) => groupHandler.getGroups(req, res))
+    .post((req, res) => groupHandler.createGroup(req, res));
 
-router.route('/classes/:code')
-    .get((req, res) => classHandler.getClassByCode(req, res))
-    .put((req, res) => classHandler.updateClass(req, res))
-    .delete((req, res) => classHandler.deleteClass(req, res));
+router.route('/groups/:code')
+    .get((req, res) => groupHandler.getGroupByCode(req, res))
+    .put((req, res) => groupHandler.updateGroup(req, res))
+    .delete((req, res) => groupHandler.deleteGroup(req, res));
 
 //SUBJECTS
 router.route('/subjects/')

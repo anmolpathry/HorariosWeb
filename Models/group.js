@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 mongoose.connect(mongoDB, { useNewUrlParser: true });
 
-let classSchema = mongoose.Schema({
+let groupSchema = mongoose.Schema({
     code: {
         type: String,
         required: true
@@ -35,6 +35,6 @@ let classSchema = mongoose.Schema({
     },
 });
 
-let Class = mongoose.model('class', classSchema);
+let Group = mongoose.model('group', groupSchema);
 
-module.exports = Class;
+module.exports = Group;
