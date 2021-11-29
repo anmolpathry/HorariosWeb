@@ -1,5 +1,6 @@
 "use strict";
 const mongoose = require('mongoose');
+let mongoDB = process.env.MONGO_DB;
 mongoose.connect(mongoDB, { useNewUrlParser: true });
 
 let subjectSchema = mongoose.Schema({

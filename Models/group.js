@@ -1,5 +1,6 @@
 "use strict";
 const mongoose = require('mongoose');
+let mongoDB = process.env.MONGO_DB;
 mongoose.connect(mongoDB, { useNewUrlParser: true });
 
 let groupSchema = mongoose.Schema({
@@ -35,6 +36,5 @@ let groupSchema = mongoose.Schema({
     },
 });
 
-let Group = mongoose.model('group', groupSchema);
-
+const Group = mongoose.model('group', groupSchema);
 module.exports = Group;
