@@ -48,6 +48,10 @@ html,body{
         font-weight: 600;
     }
 
+    *:focus {
+        outline: 0;
+    }
+
     #scheduleClasses{
         overflow: scroll;
         overflow-x: hidden;
