@@ -51,105 +51,318 @@
   </nav>
 
 
-  <div id="content" class="row">
-    <div id="left-side" class="col-5 sm-1">
-      <h3>Subjects</h3>
-      <div id="scheduleList" class="container mt-2">
+  <div id="content" class="row mt-4 pt-2">
+    <div id="left-side" class="col-5 ml-4 pl-4">
+      
+      <ul class="list-group">
+        <li id="subjectsTitle" class="list-group-item p-0 pt-1 m-0 d-flex justify-content-center align-items-center"> 
+          <h6 class="ml-1">Subjects</h6>
+        </li>
+        <li id="subjectsHeaders" class="list-group-item d-flex align-items-center">
+          <div class="col-3 p-0 m-0">Department</div>
+          <div class="col-2 m-0">Credits</div>
+          <div class="col-3 m-0">Name</div>
+          <span class="ml-auto mr-2 pr-1"><button id="search" type="button" class="btn btn-dark btn-sm">
+            <i style="color:white;" class="fas fa-search"></i>
+          </button></span>
+        </li>
 
-        <div class="list-group">
-          <ul class="list-group">
-            <li class="list-group-item list-group-item-warning d-flex justify-content-between align-items-center">
-              <p>Department</p>
-              <p>Credits</p>
-              <p>Name</p>
-              <span><button id="search" type="button" class="btn btn-dark btn-sm"><i style="color:white;"
-                    class="fas fa-search"></i></button></span>
-            </li>
+      </ul>
 
-          </ul>
+      <ul id="subjectsList"class="list-group">
+        <li class="list-group-item d-flex align-items-center">
+          <div class="col-3 p-0 m-0" id="department">DESI</div>
+          <div class="col-2 m-0" id="credits">10</div>
+          <div class="col-sm-4 col-md-5 m-0" id="name">Microprocesadores</div>
+          <span class="ml-auto"><button id="details" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#classesModal">
+              <i style="color:white;" class="fas fa-info-circle"></i>
+          </button></span>
+        </li>
 
-          <ul class="list-group">
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              <p id="department">DESI</p>
-              <p id="credits">10</p>
-              <p id="Name">Microprocesadores</p>
-              <span><button id="details" type="button" class="btn btn-info btn-sm" data-toggle="modal"
-                  data-target="#changeModal"><i style="color:white;" class="fas fa-info-circle"></i></button></span>
-            </li>
+        <li class="list-group-item d-flex align-items-center">
+          <div class="col-3 p-0 m-0" id="department">DESI</div>
+          <div class="col-2 m-0" id="credits">8</div>
+          <div class="col-sm-4 col-md-5 m-0" id="name">Memoria Dinámica</div>
+          <span class="ml-auto"><button id="details" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#classesModal">
+              <i style="color:white;" class="fas fa-info-circle"></i>
+          </button></span>
+        </li>
 
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              <p id="department">DESI</p>
-              <p id="credits">8</p>
-              <p id="Name">Memoria Dinámica</p>
-              <span><button id="details" type="button" class="btn btn-info btn-sm" data-toggle="modal"
-                data-target="#changeModal"><i style="color:white;" class="fas fa-info-circle"></i></button></span>
-            </li>
+        <li class="list-group-item d-flex align-items-center">
+          <div class="col-3 p-0 m-0" id="department">MAF</div>
+          <div class="col-2 m-0" id="credits">8</div>
+          <div class="col-sm-4 col-md-5 m-0" id="name">Cálculo Integral</div>
+          <span class="ml-auto"><button id="details" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#classesModal">
+              <i style="color:white;" class="fas fa-info-circle"></i>
+          </button></span>
+        </li>
 
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              <p id="department">MAF</p>
-              <p id="credits">8</p>
-              <p id="Name">Cálculo Integral</p>
-              <span><button id="details" type="button" class="btn btn-info btn-sm" data-toggle="modal"
-                data-target="#changeModal"><i style="color:white;" class="fas fa-info-circle"></i></button></span>
-            </li>
+        <li class="list-group-item d-flex align-items-center">
+          <div class="col-3 p-0 m-0" id="department">DFH</div>
+          <div class="col-2 m-0" id="credits">4</div>
+          <div class="col-sm-4 col-md-5 m-0" id="name">Fé y Cultura</div>
+          <span class="ml-auto"><button id="details" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#classesModal">
+              <i style="color:white;" class="fas fa-info-circle"></i>
+          </button></span>
+        </li>
 
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              <p id="department">DFH</p>
-              <p id="credits">4</p>
-              <p id="Name">Fe y Cultura</p>
-              <span><button id="details" type="button" class="btn btn-info btn-sm" data-toggle="modal"
-                data-target="#changeModal"><i style="color:white;" class="fas fa-info-circle"></i></button></span>
-            </li>
+        <li class="list-group-item d-flex align-items-center">
+          <div class="col-3 p-0 m-0" id="department">DESI</div>
+          <div class="col-2 m-0" id="credits">10</div>
+          <div class="col-sm-4 col-md-5 m-0" id="name">Microprocesadores</div>
+          <span class="ml-auto"><button id="details" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#classesModal">
+              <i style="color:white;" class="fas fa-info-circle"></i>
+          </button></span>
+        </li>
 
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              <p id="department">DESI</p>
-              <p id="credits">10</p>
-              <p id="Name">Microprocesadores</p>
-              <span><button id="details" type="button" class="btn btn-info btn-sm" data-toggle="modal"
-                data-target="#changeModal"><i style="color:white;" class="fas fa-info-circle"></i></button></span>
-            </li>
+        <li class="list-group-item d-flex align-items-center">
+          <div class="col-3 p-0 m-0" id="department">DESI</div>
+          <div class="col-2 m-0" id="credits">8</div>
+          <div class="col-sm-4 col-md-5 m-0" id="name">Memoria Dinámica</div>
+          <span class="ml-auto"><button id="details" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#classesModal">
+              <i style="color:white;" class="fas fa-info-circle"></i>
+          </button></span>
+        </li>
 
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              <p id="department">DESI</p>
-              <p id="credits">8</p>
-              <p id="Name">Memoria Dinámica</p>
-              <span><button id="details" type="button" class="btn btn-info btn-sm" data-toggle="modal"
-                data-target="#changeModal"><i style="color:white;" class="fas fa-info-circle"></i></button></span>
-            </li>
+        <li class="list-group-item d-flex align-items-center">
+          <div class="col-3 p-0 m-0" id="department">MAF</div>
+          <div class="col-2 m-0" id="credits">8</div>
+          <div class="col-sm-4 col-md-5 m-0" id="name">Cálculo Integral</div>
+          <span class="ml-auto"><button id="details" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#classesModal">
+              <i style="color:white;" class="fas fa-info-circle"></i>
+          </button></span>
+        </li>
 
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              <p id="department">MAF</p>
-              <p id="credits">8</p>
-              <p id="Name">Cálculo Integral</p>
-              <span><button id="details" type="button" class="btn btn-info btn-sm" data-toggle="modal"
-                data-target="#changeModal"><i style="color:white;" class="fas fa-info-circle"></i></button></span>
-            </li>
+        <li class="list-group-item d-flex align-items-center">
+          <div class="col-3 p-0 m-0" id="department">DFH</div>
+          <div class="col-2 m-0" id="credits">4</div>
+          <div class="col-sm-4 col-md-5 m-0" id="name">Fé y Cultura</div>
+          <span class="ml-auto"><button id="details" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#classesModal">
+              <i style="color:white;" class="fas fa-info-circle"></i>
+          </button></span>
+        </li>
 
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              <p id="department">DFH</p>
-              <p id="credits">4</p>
-              <p id="Name">Fe y Cultura</p>
-              <span><button id="details" type="button" class="btn btn-info btn-sm" data-toggle="modal"
-                data-target="#changeModal"><i style="color:white;" class="fas fa-info-circle"></i></button></span>
-            </li>
+        <li class="list-group-item d-flex align-items-center">
+          <div class="col-3 p-0 m-0" id="department">DESI</div>
+          <div class="col-2 m-0" id="credits">10</div>
+          <div class="col-sm-4 col-md-5 m-0" id="name">Microprocesadores</div>
+          <span class="ml-auto"><button id="details" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#classesModal">
+              <i style="color:white;" class="fas fa-info-circle"></i>
+          </button></span>
+        </li>
 
-          </ul>
+        <li class="list-group-item d-flex align-items-center">
+          <div class="col-3 p-0 m-0" id="department">DESI</div>
+          <div class="col-2 m-0" id="credits">8</div>
+          <div class="col-sm-4 col-md-5 m-0" id="name">Memoria Dinámica</div>
+          <span class="ml-auto"><button id="details" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#classesModal">
+              <i style="color:white;" class="fas fa-info-circle"></i>
+          </button></span>
+        </li>
 
+        <li class="list-group-item d-flex align-items-center">
+          <div class="col-3 p-0 m-0" id="department">MAF</div>
+          <div class="col-2 m-0" id="credits">8</div>
+          <div class="col-sm-4 col-md-5 m-0" id="name">Cálculo Integral</div>
+          <span class="ml-auto"><button id="details" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#classesModal">
+              <i style="color:white;" class="fas fa-info-circle"></i>
+          </button></span>
+        </li>
+
+        <li class="list-group-item d-flex align-items-center">
+          <div class="col-3 p-0 m-0" id="department">DFH</div>
+          <div class="col-2 m-0" id="credits">4</div>
+          <div class="col-sm-4 col-md-5 m-0" id="name">Fé y Cultura</div>
+          <span class="ml-auto"><button id="details" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#classesModal">
+              <i style="color:white;" class="fas fa-info-circle"></i>
+          </button></span>
+        </li>
+
+      </ul>
+
+      <!-- Modal -->
+    <div class="modal fade" id="classesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="classesForSubject" overflow:hidden>Classes for Microprocesadores</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-6">
+                <div class="row">
+                  <div class="input-group mb-1">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Professor</span>
+                    </div>
+                    <input required type="text" class="form-control col-10" id="professorSearch" placeholder="Professor">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-group mb-1">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Classroom</span>
+                    </div>
+                    <input required type="text" class="form-control col-10" id="classroomSearch" placeholder="Classroom">
+                  </div>
+                </div>
+              </div>
+              <div class="col ml-3 mt-1">    
+                <div class="vertical-input-group">
+                  <div class="input-group mb-3">
+                    <span class="input-group-text top-input-text">Period</span>
+                    <div id="hourSearch" class="input-group">
+                      <select class="custom-select bl-input" id="minHour">
+                        <option value="7" selected>7:00</option>
+                        <option value="9">9:00</option>
+                        <option value="11">11:00</option>
+                        <option value="13">13:00</option>
+                        <option value="16">16:00</option>
+                        <option value="18">18:00</option>
+                        <option value="20">20:00</option>
+                      </select>
+                      <select class="custom-select br-input" id="maxHour">
+                        <option value="9">9:00</option>
+                        <option value="11">11:00</option>
+                        <option value="13">13:00</option>
+                        <option value="16">16:00</option>
+                        <option value="18">18:00</option>
+                        <option value="20">20:00</option>
+                        <option value="22" selected>22:00</option>
+                      </select>
+                    </div>
+                    
+                  </div>
 
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-group mb-3 d-flex align-items-center justify-content-center">
+                <span class="input-group-text mr-2">Days</span>
+                <div id="daySearch">
+                  <button id="mon" type="button" class="btn btn-info btn-sm" style="padding-left: 7px;">M</button>
+                  <button id="tue" type="button" class="btn btn-info btn-sm">T</button>
+                  <button id="wed" type="button" class="btn btn-info btn-sm" style="padding-left: 7px;">W</button>
+                  <button id="thu" type="button" class="btn btn-info btn-sm">T</button>
+                  <button id="fri" type="button" class="btn btn-info btn-sm">F</button>
+                  <button id="sat" type="button" class="btn btn-info btn-sm">S</button>
+                </div>
+              </div>
+            </div>
+            <div id="classesTable" >
+              <table class="table table-sm table-bordered">
+                <thead class="table-secondary">
+                  <tr>
+                    <th scope="col" id="code">Code</th>
+                    <th scope="col" id="days">Days</th>
+                    <th scope="col" id="hours">Hours</th>
+                    <th scope="col" id="prof">Professor</th>
+                    <th scope="col" id="lang">Language</th>
+                    <th scope="col" id="classroom">Classroom</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>DESI13EB</td>
+                    <td>M,W</td>
+                    <td>7:00-9:00</td>
+                    <td>Luis Sinsel es un gran profe</td>
+                    <td>English</td>
+                    <td>Online</td>
+                  </tr>
+                  <tr>
+                    <td>DESI13EB</td>
+                    <td>Tu,W,Th</td>
+                    <td>7:00-9:00</td>
+                    <td>Luis Sinsel es un gran profe</td>
+                    <td>English</td>
+                    <td>Online</td>
+                  </tr>
+                  <tr>
+                    <td>DESI13EB</td>
+                    <td>M,W,Fri</td>
+                    <td>7:00-9:00</td>
+                    <td>Luis Sinsel es un gran profe</td>
+                    <td>English</td>
+                    <td>Online</td>
+                  </tr>
+                  <tr>
+                    <td>DESI13EB</td>
+                    <td>Mon,Wed,Fri</td>
+                    <td>7:00-9:00</td>
+                    <td>Luis Sinsel es un gran profe</td>
+                    <td>English</td>
+                    <td>Online</td>
+                  </tr>
+                  <tr>
+                    <td>DESI13EB</td>
+                    <td>Mon,Wed,Fri</td>
+                    <td>7:00-9:00</td>
+                    <td>Luis Sinsel es un gran profe</td>
+                    <td>English</td>
+                    <td>Online</td>
+                  </tr>
+                  <tr>
+                    <td>DESI13EB</td>
+                    <td>Mon,Wed,Fri</td>
+                    <td>7:00-9:00</td>
+                    <td>Luis Sinsel es un gran profe</td>
+                    <td>English</td>
+                    <td>Online</td>
+                  </tr>
+                  <tr>
+                    <td>DESI13EB</td>
+                    <td>Mon,Wed,Fri</td>
+                    <td>7:00-9:00</td>
+                    <td>Luis Sinsel es un gran profe</td>
+                    <td>English</td>
+                    <td>Online</td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+            
+      
+          </div>  
+
+          
+        
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn" style="background-color: #f06e9c; color: white;">Save changes</button>
+          <button type="button" class="btn" data-dismiss="modal" style="background-color: #bb285c;color: white;">Close</button>
+        </div>
       </div>
+    </div>
+  </div>
 
+    
+    
+    
     </div>
 
-
-    <div id="right-side" class="col-sm-6 ml-5">
+    <div id="right-side" class="col-sm-6 ml-3">
       <div class="row justify-content-between">
         <div class="col">
-          <h3 style="color:rgb(0, 0, 0); margin-left:10px;">Horario 1 </h3>
+          <input type="text" id="scheduleName" minlength="1" maxlength="20" disabled value="Horario 1"></input>
         </div>
-        <div class="col-sm-md-2 mr-3">
-          <button id="pencil" type="button" class="btn btn-dark"> <i style="color:white;"
-              class="fas fa-pencil-alt"></i></button>
+        <div id="editNameButtons" class="col-sm-md-2 mr-3">
+          <a id="editName" type="button" class="btn btn-lg" style="background-color: transparent;"> 
+            <i style="color:#678da8; " class="fas fa-pen"></i>
+          </a>  
+          <a id="changeName" type="button" class="btn btn-lg" style="background-color: transparent;" hidden> 
+            <i style="color:#678da8; " class="fas fa-check"></i>
+          </a>
+          <a id="cancelName" type="button" class="btn btn-lg" style="background-color: transparent;" hidden> 
+            <i style="color:#678da8; " class="fas fa-times"></i>
+          </a>
         </div>
       </div>
 
@@ -247,117 +460,71 @@
         </tbody>
       </table>
 
-  
-    <div class="row">
-      <div id="scheduleClasses" class="col justify-content-center">
-        <div class="row">
-            <div class="col p-0 mr-3">
-              <div id="cardRight" class="card">
-                <div class="card-body d-flex justify-content-around align-middle">
-                  <div class="col-sm-md-2 mr-3">
-                    <button id="pencil" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
-                        class="fas fa-trash-alt"></i></button>
-                  </div>
+      <div class="row">
+        <div id="scheduleClasses" class="col justify-content-center">
+          <div class="card mb-3">
+            <div class="row">
+              <div class="col-1 ml-5 d-flex justify-content-center align-items-center">
+                <button id="pencil" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
+                    class="fas fa-trash-alt"></i></button>
+              </div>
+              <div class="col ml-0 pl-0">
+                <div class="card-body d-flex justify-content-around align-middle flex-wrap">
                   <card>Professor: Mario Peredo</card>
                   <card>Classroom: A-208</card>
                   <card>Language: Spanish</card>
                 </div>
-                <p id="scheduleName" class="card-footer">Microprocesadores  DESI13EF</p> 
               </div>
             </div>
-        </div>
-
-        <div class="row">
-          <div class="col p-0 mr-3">
-            <div id="cardRight" class="card">
-              <div class="card-body d-flex justify-content-around align-middle">
-                <div class="col-sm-md-2 mr-3">
-                  <button id="pencil" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
-                      class="fas fa-trash-alt"></i></button>
-                </div>
-                <card>Professor: Mario Peredo</card>
-                <card>Classroom: A-208</card>
-                <card>Language: Spanish</card>
-              </div>
-              <p id="scheduleName" class="card-footer">Microprocesadores  DESI13EF</p> 
-            </div>
+            <div id="scheduleName" class="card-footer">Microprocesadores  DESI13EF</div> 
           </div>
-      </div>
 
-      <div class="row">
-        <div class="col p-0 mr-3">
-          <div id="cardRight" class="card">
-            <div class="card-body d-flex justify-content-around align-middle">
-              <div class="col-sm-md-2 mr-3">
+          <div class="card mb-3">
+            <div class="row">
+              <div class="col-1 ml-5 d-flex justify-content-center align-items-center">
                 <button id="pencil" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
                     class="fas fa-trash-alt"></i></button>
               </div>
-              <card>Professor: Mario Peredo</card>
-              <card>Classroom: A-208</card>
-              <card>Language: Spanish</card>
+              <div class="col ml-0 pl-0">
+                <div class="card-body d-flex justify-content-around align-middle flex-wrap">
+                  <card>Professor: Mario Peredo</card>
+                  <card>Classroom: A-208</card>
+                  <card>Language: Spanish</card>
+                </div>
+              </div>
             </div>
-            <p id="scheduleName" class="card-footer">Microprocesadores  DESI13EF</p> 
-          </div>
-        </div>
-    </div>
-    
-        </div>
-        <div class="col-2">
-          <button id="save" type="button" style="background-color:#5476cb; color:white;" class="btn btn-block btn-sm">Save</button>
-          <button id="cancel" type="button" style="background-color:#86b1cf; color:white;" class="btn btn-block btn-sm">Cancel</button>
-        </div>
-    </div>
-
-    
-
-
-    </div>
-    </div>
-
-    </div>
-  </div>
-
-  <!-- Modal -->
-  <div class="modal fade" id="changeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Classes</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-3">
-               <p style="background-color: rgb(197, 43, 102); text-align: center; color:white">Professor</p>
-            </div>
-            <div class="col-3">
-              <p>Professor</p>
-           </div>
+            <div id="scheduleName" class="card-footer">Microprocesadores  DESI13EF</div> 
           </div>
 
-          <div class="row">
-            <div class="col-3">
-               <p style="background-color: rgb(197, 43, 102); text-align: center; color:white">Days</p>
+          <div class="card mb-3">
+            <div class="row">
+              <div class="col-1 ml-5 d-flex justify-content-center align-items-center">
+                <button id="pencil" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
+                    class="fas fa-trash-alt"></i></button>
+              </div>
+              <div class="col ml-0 pl-0">
+                <div class="card-body d-flex justify-content-around align-middle flex-wrap">
+                  <card>Professor: Mario Peredo</card>
+                  <card>Classroom: A-208</card>
+                  <card>Language: Spanish</card>
+                </div>
+              </div>
             </div>
-            <div class="col-8">
-              <span><button id="monday" type="button" class="btn btn-info btn-sm">M</button></span>
-              <span><button id="tuesday" type="button" class="btn btn-info btn-sm">T</button></span>
-              <span><button id="wednesday" type="button" class="btn btn-info btn-sm">W</button></span>
-              <span><button id="thursday" type="button" class="btn btn-info btn-sm">T</button></span>
-              <span><button id="friday" type="button" class="btn btn-info btn-sm">F</button></span>
-           </div>
+            <div id="scheduleName" class="card-footer">Microprocesadores  DESI13EF</div> 
           </div>
-         
+          
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+        <div class="col-2 ">
+          <div class="container d-flex flex-column align-items-center justify-content-center h-100">
+            <button id="save" type="button" style="background-color:#5476cb; color:white;" class="btn btn-block btn-sm">Save</button>
+            <button id="cancel" type="button" style="background-color:#86b1cf; color:white;" class="btn btn-block btn-sm">Cancel</button>
+          </div>
         </div>
+      
+
       </div>
     </div>
+  
   </div>
 
     <!-- Optional JavaScript -->
