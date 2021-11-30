@@ -52,6 +52,17 @@ html,body{
         outline: 0;
     }
 
+    #searchName{
+        background-color: transparent;
+        color: white;
+        border-width: 0;
+    }
+
+    #searchName::placeholder{
+        color: white;
+        
+    }
+
     #scheduleClasses{
         overflow: scroll;
         overflow-x: hidden;
