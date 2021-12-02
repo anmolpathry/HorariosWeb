@@ -9,10 +9,14 @@ const userHandler = require('./user_handler');
 const groupHandler = require('./group_handler');
 const subjectHandler = require('./subject_handler');
 
-router.use('/users', validateUtils.validateUser);
+/* router.use('/users', validateUtils.validateUser);
 router.use('/subjects', validateUtils.validateAdmin);
-router.use('/groups', validateUtils.validateAdmin);
+router.use('/groups', validateUtils.validateAdmin);  */
 
+//LOGIN
+router.route('/login')
+  .post((req, res) => userHandler.login(req, res));
+  
 //USERS
 router.route('/users/')
   .get((req, res) => userHandler.getUsers(req, res))

@@ -8,11 +8,12 @@ function getSubjects(req, res) {
 
 function getSubjectByName(req, res) {
     let name = req.params.name;
+    console.log(name);
     Subject.findOne({ name: `${name}` }).then(subject => res.status(200).json(subject));
 }
 
 function createSubject(req, res) {
-    let subject = subject(req.body);
+    let subject = Subject(req.body);
 
     subject.save().then((subject) => {
         res.set('Content-Type', 'text/plain; charset=utf-8');
