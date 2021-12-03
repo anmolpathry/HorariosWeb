@@ -1,61 +1,163 @@
 "use strict";
 
-//xhr request casi lo mismo un objeto creado con cosas de mi formulario
-//crear usuario status:estudiante
-//materias vacias
-//crear esquema y mandarlo a ruta con xhr
+//RUTAS QUE SE USARAN
+const schedules = 'http://localhost:8080/users/schedules'
+const groups = 'http://localhost:8080/groups'
+const subjects = 'http://localhost:8080/subjects'
+const login = 'http://localhost:8080/login'
+const signup = 'http://localhost:8080/signup'
 
+async function loadSchedules(schedules_url) {
+    let response = await fetch(schedules_url);
+    if(response.status != 200) return [];
+    return await response.json();
+}
 
+async function loadSchedule(subjects_url) {
+    let response = await fetch(subjects_url);
+    if(response.status != 200) return [];
+    return await response.json();;
+}
+
+async function loadClasses(classes_url) {
+    let response = await fetch(classes_url);
+    if(response.status != 200) return [];
+    return await response.json();
+}
+
+async function loadSubjects(subjects_url) {
+    let response = await fetch(subjects_url);
+    if(response.status != 200) return [];
+    return await response.json();
+}
 
 //POST funcion login
+function login(){
+    let xhr = new XMLHttpRequest();
+
+    let usr = {
+        email: document.getElementById('email').value,
+        password: document.getElementById('password').value
+    };
+
+    xhr.open('POST',login);
+    xhr.setRequestHeader('Content-type', 'application/json');
+    xhr.send(JSON.stringify(usr));
+    xhr.onreadystatechange = function(){
+        if(this.status==200 && this.readyState ==4){
+            window.location.href = 'http://localhost:8080/home'
+        }
+    }
+    xhr.onload = () => {
+        writeUserStorage(xhr.response);
+    }
+    return false;
+}
 
 //POST funcion signup
+function signup(){
+    let xhr = new XMLHttpRequest();
 
-//boton normal en signup y login
+    let usr = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        password: document.getElementById('password').value,
+        role:"USER"
+    };
 
-
-//DE LA SESION21 JAJA
-async function loadSchedules(url) {
-    // fetch from localhost:3000/????
-    let response = await fetch(url);
-    if(response.status != 200) return [];
-    let users = await response.json();
-    return users;
+    xhr.open('POST',signup);
+    xhr.setRequestHeader('Content-type', 'application/json');
+    xhr.send(JSON.stringify(usr));
+    xhr.onreadystatechange = function(){
+        if(this.status==200 && this.readyState ==4){
+            window.location.href = 'http://localhost:8080/home'
+        }
+    }
+    return false;
 }
 
-async function loadClasses(url) {
-    // fetch from localhost:3000/????
-    let response = await fetch(url);
-    if(response.status != 200) return [];
-    let users = await response.json();
-    return users;
-}
-
-async function loadSubjects(url) {
-    // fetch from localhost:3000/????
-    let response = await fetch(url);
-    if(response.status != 200) return [];
-    let users = await response.json();
-    return users;
-}
-
-function storeUser(url, user, onSuccess, onError) {
-    // POST XHR to localhost:3000/api/users/{email} with body 'user' ????
+//AJAX SCHEDULES
+function postSchedule(url, schedule, onSuccess, onError){
     let xhr = new XMLHttpRequest();
 
     xhr.open('POST',url);
     xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify(user));
+    xhr.send(JSON.stringify(schedule));
     xhr.onload = () => getXhrResponse(xhr,onSuccess, onError);
 }
 
-function putUser(url, user, onSuccess, onError) {
-    // PUT XHR to localhost:3000/api/users/{email} with body 'user'
+//AJAX SCHEDULE
+function putSchedule(url, schedule, onSuccess, onError){
     let xhr = new XMLHttpRequest();
 
     xhr.open('PUT',url);
     xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify(user));
+    xhr.send(JSON.stringify(schedule));
+    xhr.onload = () => getXhrResponse(xhr,onSuccess, onError);
+}
+
+function deleteSchedule(url, schedule, onSuccess, onError){
+    let xhr = new XMLHttpRequest();
+
+    xhr.open('DELETE',url);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(schedule));
+    xhr.onload = () => getXhrResponse(xhr,onSuccess, onError);
+}
+
+//AJAX SUBJECTS
+function postSubject(url, subject, onSuccess, onError){
+    let xhr = new XMLHttpRequest();
+
+    xhr.open('POST',url);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(subject));
+    xhr.onload = () => getXhrResponse(xhr,onSuccess, onError);
+}
+
+function putSubject(url, subject, onSuccess, onError){
+    let xhr = new XMLHttpRequest();
+
+    xhr.open('PUT',url);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(subject));
+    xhr.onload = () => getXhrResponse(xhr,onSuccess, onError);
+}
+
+function deleteSubject(url, subject, onSuccess, onError){
+    let xhr = new XMLHttpRequest();
+
+    xhr.open('DELETE',url);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(subject));
+    xhr.onload = () => getXhrResponse(xhr,onSuccess, onError);
+}
+
+//AJAX GROUPS
+function postGroup(url, group, onSuccess, onError){
+    let xhr = new XMLHttpRequest();
+
+    xhr.open('POST',url);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(group));
+    xhr.onload = () => getXhrResponse(xhr,onSuccess, onError);
+}
+
+function putGroup(url, group, onSuccess, onError){
+    let xhr = new XMLHttpRequest();
+
+    xhr.open('PUT',url);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(group));
+    xhr.onload = () => getXhrResponse(xhr,onSuccess, onError);
+}
+
+function deleteGroup(url, group, onSuccess, onError){
+    let xhr = new XMLHttpRequest();
+
+    xhr.open('DELETE',url);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(group));
     xhr.onload = () => getXhrResponse(xhr,onSuccess, onError);
 }
 
