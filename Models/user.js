@@ -16,7 +16,7 @@ let scheduleSchema = mongoose.Schema({
     },
     groups: {
         type: [{type: mongoose.Schema.Types.ObjectId, ref: 'group'}],
-        required: true
+        required: false
     },
     period: {
         type: String,
@@ -40,6 +40,7 @@ let userSchema = mongoose.Schema({
     role: {
         type: String,
         enum: ['ADMIN', 'USER'],
+        default : 'USER',
         required: true
     },
     schedules: {

@@ -9,22 +9,38 @@ const userHandler = require('./user_handler');
 const groupHandler = require('./group_handler');
 const subjectHandler = require('./subject_handler');
 
-/* router.use('/users', validateUtils.validateUser);
-router.use('/subjects', validateUtils.validateAdmin);
-router.use('/groups', validateUtils.validateAdmin);  */
+router.use('/:var(home)?', validateUtils.validateUser);
+router.use('/manage-schedule', validateUtils.validateUser);
+router.use('/admin-subjects', validateUtils.validateAdmin);
+router.use('/admin-groups', validateUtils.validateAdmin);
 
 //LOGIN
 router.route('/login')
-  .post((req, res) => userHandler.login(req, res));
+    .post((req, res) => userHandler.login(req, res));
   
 //USERS
 router.route('/users/')
-  .get((req, res) => userHandler.getUsers(req, res))
-  .post((req, res) => userHandler.createUser(req, res));
+    .get((req, res) => userHandler.getUsers(req, res))
+    .post((req, res) => userHandler.createUser(req, res));
 
 router.route('/users/:email')
-  .get((req, res) => userHandler.getUserByEmail(req, res))
-  .put((req, res) => userHandler.updateUser(req, res));
+    .get((req, res) => userHandler.getUserByEmail(req, res))
+    .put((req, res) => userHandler.updateUser(req, res));
+
+//USERS SCHEDULES
+router.route('/users/schedules/:email')
+    .get((req, res) => userHandler.getSchedules(req, res))
+    .post((req, res) => userHandler.createSchedule(req, res));
+
+router.route('/users/:email/:name')
+    .get((req, res) => userHandler.getScheduleByName(req, res))
+    .delete((req, res) => userHandler.deleteSchedule(req, res))
+    .put((req, res) => userHandler.updateSchedule(req, res));
+
+router.route('/users/:email/:name/:group')
+    .delete((req, res) => userHandler.deleteGroupFromSchedule(req, res));
+router.route('/users/schedules/groups/')
+    .get((req, res) => userHandler.getScheduleGroups(req, res));
 
 //GROUPS
 router.route('/groups/')
@@ -42,9 +58,9 @@ router.route('/subjects/')
     .post((req, res) => subjectHandler.createSubject(req, res));
 
 router.route('/subjects/:name')
-  .get((req, res) => subjectHandler.getSubjectByName(req, res))
-  .put((req, res) => subjectHandler.updateSubject(req, res))
-  .delete((req, res) => subjectHandler.deleteSubject(req, res));
+    .get((req, res) => subjectHandler.getSubjectByName(req, res))
+    .put((req, res) => subjectHandler.updateSubject(req, res))
+    .delete((req, res) => subjectHandler.deleteSubject(req, res));
 
 //VIEWS
 router.get('/:var(home)?', (req, res) => {

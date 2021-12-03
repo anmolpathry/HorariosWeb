@@ -27,9 +27,6 @@ function updateUser(req, res) {
     let email = req.params.email;
     let updatedUser = req.body;
 
-    //console.log(email);
-    //console.log(updatedUser);
-
     for (let property in updatedUser) {
         if(['password'].includes(property)){
             updatedUser.password = bcrypt.hashSync(updatedUser.password, 10); 
@@ -71,8 +68,62 @@ function login(req, res) {
         });
 }
 
+//User Schedules
+function getSchedules(req, res) {
+    let email = req.params.email;
+    User.findOne({ email: `${email}` }).select('schedules -_id').then(schedules => res.status(200).json(schedules));
+}
+
+function createSchedule(req, res) {
+    let schedule = Schedule(req.body);
+    
+    schedule.save().then((schedule) => {
+        res.set('Content-Type', 'text/plain; charset=utf-8');
+        res.send(`Schedule ${schedule.name} was created!`);
+    });
+}
+
+function getScheduleByName(req, res) {
+    let email = req.params.email;
+    let name = req.params.name;
+    Schedule.findOne({email:`${email}` }).findOne({name:`${name}`}).then(schedule => res.status(200).json(schedule));
+}
+/*
+function updateSchedule(req, res) {
+    let email = req.params.email;
+    let name = req.params.name;
+    let updatedSchedule = req.body;
+    for (let property in updatedSchedule) {
+        if (['name','period','groups'].includes(property)) continue;
+        delete updatedSchedule[property];
+    }
+    User.findOneAndUpdate({ email: `${email}` }, updatedSchedule, {new:true}).then(user => {
+        res.type('text/plain; charset=utf-8');
+        res.send(`User ${user.name} was updated!`);
+    });
+}
+
+router.route('/users/:email/:name')
+    
+    .delete((req, res) => userHandler.deleteSchedule(req, res))
+    .put((req, res) => userHandler.updateSchedule(req, res));
+
+router.route('/users/:email/:name/:group')
+    .delete((req, res) => userHandler.deleteGroupFromSchedule(req, res));
+router.route('/users/schedules/groups/')
+    .get((req, res) => userHandler.getScheduleGroups(req, res));
+
+
+
+
+*/
+
+
 exports.getUsers = getUsers;
 exports.getUserByEmail = getUserByEmail;
 exports.createUser = createUser;
 exports.updateUser = updateUser;
 exports.login = login;
+/*
+exports.getSchedules = getSchedules;
+exports.createSchedule = createSchedule;*/
