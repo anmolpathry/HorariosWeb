@@ -9,14 +9,14 @@ const userHandler = require('./user_handler');
 const groupHandler = require('./group_handler');
 const subjectHandler = require('./subject_handler');
 
-router.use('/:var(home)?', validateUtils.validateUser);
-router.use('/manage-schedule', validateUtils.validateUser);
-router.use('/admin-subjects', validateUtils.validateAdmin);
-router.use('/admin-groups', validateUtils.validateAdmin);
+router.use('/home.html', validateUtils.validateUser);
+router.use('/manage-schedule.html', validateUtils.validateUser);
+router.use('/admin-subjects.html', validateUtils.validateAdmin);
+router.use('/admin-groups.html', validateUtils.validateAdmin);
 
 //LOGIN
 router.route('/login')
-    .post((req, res) => userHandler.login(req, res));
+    .post((req, res) => userHandler.login(req.body, res));
   
 //USERS
 router.route('/users/')
@@ -62,8 +62,8 @@ router.route('/subjects/:name')
     .put((req, res) => subjectHandler.updateSubject(req, res))
     .delete((req, res) => subjectHandler.deleteSubject(req, res));
 
-//VIEWS
-router.get('/:var(home)?', (req, res) => {
+/* //VIEWS
+router.get('/home', (req, res) => {
     res.sendFile(path.join(__dirname, "../Views/home.html"));
 });
 
@@ -89,6 +89,6 @@ router.get('/admin-subjects', (req, res) => {
 
 router.get('/admin-classes', (req, res) => {
     res.sendFile(path.join(__dirname, "../Views/admin_classes.html"));
-});
+}); */
 
 module.exports = router;

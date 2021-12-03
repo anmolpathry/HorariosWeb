@@ -2,8 +2,7 @@
 
 const jwt = require("jsonwebtoken");
 
-let privateKey = TOKEN_KEY;
-/*
+
 const verifyToken = (req, res, next) => {
     let token = req.get("x-auth");
     if (token == undefined) {
@@ -16,14 +15,14 @@ const verifyToken = (req, res, next) => {
         req.userInfo = decoded;
         return next();
     });
-};*/
+};
 
 const validateUser =  (req, res, next) => {
     let token = req.get("x-auth");
     if (token == undefined) {
         return res.status(403).send("Missing token");
     }
-    jwt.verify(token, privateKey, (err, decoded) => {
+    jwt.verify(token, TOKEN_KEY, (err, decoded) => {
         if (err) return res.status(401).send("Invalid Token");
         req.userInfo = decoded;
         if (userInfo.role == 'USER') return next();
@@ -38,7 +37,7 @@ const validateAdmin =  (req, res, next) => {
         return res.status(403).send("Missing token");
     }
 
-    jwt.verify(token, privateKey, (err, decoded) => {
+    jwt.verify(token, TOKEN_KEY, (err, decoded) => {
         if (err) return res.status(401).send("Invalid Token");
         req.userInfo = decoded;
         if (userInfo.role == 'ADMIN') return next();
@@ -46,6 +45,6 @@ const validateAdmin =  (req, res, next) => {
     });
 };
 
-exports.verifyToken = verifyToken;
 exports.validateUser = validateUser;
 exports.validateAdmin = validateAdmin;
+exports.verifyToken = verifyToken;

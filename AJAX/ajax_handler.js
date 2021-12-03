@@ -32,7 +32,7 @@ async function loadSubjects(subjects_url) {
 }
 
 //POST funcion login
-function login(){
+async function postLogin(){
     let xhr = new XMLHttpRequest();
 
     let usr = {
@@ -40,22 +40,29 @@ function login(){
         password: document.getElementById('password').value
     };
 
+    console.log(usr);
+
     xhr.open('POST',login);
     xhr.setRequestHeader('Content-type', 'application/json');
     xhr.send(JSON.stringify(usr));
+
     xhr.onreadystatechange = function(){
-        if(this.status==200 && this.readyState ==4){
-            window.location.href = 'http://localhost:8080/home'
+        if(this.status ==200 && this.readyState ==4){
+            window.location.href = 'http://localhost:8080/home.html'
         }
     }
+    
     xhr.onload = () => {
         writeUserStorage(xhr.response);
+        //fetch('http://localhost:8080/users/' + JSON.parse(xhr.response).email, {Headers: {"x-auth": JSON.parse(xhr.response).token}});
+        //window.location.href = 'http://localhost:8080/home.html'
+        //console.log(JSON.parse(xhr.response).email);
     }
     return false;
 }
 
 //POST funcion signup
-function signup(){
+function signUp(){
     let xhr = new XMLHttpRequest();
 
     let usr = {
@@ -70,7 +77,7 @@ function signup(){
     xhr.send(JSON.stringify(usr));
     xhr.onreadystatechange = function(){
         if(this.status==200 && this.readyState ==4){
-            window.location.href = 'http://localhost:8080/home'
+            window.location.href = 'http://localhost:8080/home.html'
         }
     }
     return false;

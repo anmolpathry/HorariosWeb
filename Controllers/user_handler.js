@@ -44,17 +44,18 @@ function updateUser(req, res) {
 
 
 function login(req, res) {
-    let email = req.body.email;
-    let password = req.body.password;
+    let email = req.email;
+    let password = req.password;
+
+    console.log(email + " " + password);
     
     User.findOne({ email: `${email}` })
         .then(user => {
             let token = user.generateToken(password);
-            console.log(token)
+            //console.log(token)
             if (token != undefined) {
                 res.status(200)
-                res.set('Content-Type', 'text/plain; charset=utf-8');
-                res.send(token, email);
+                res.json({token, email});
             } else {
                 res.status(404);            
                 res.set('Content-Type', 'text/plain; charset=utf-8');
