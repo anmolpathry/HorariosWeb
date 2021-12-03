@@ -318,44 +318,60 @@
     </div>
   </div>
 
-  <!-- Modal -->
-  <div class="modal fade" id="changeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  <a id="createScheduleButton" data-toggle="modal" data-target="#createClassModal" data-backdrop="false">
+    <i class="fa fa-plus-circle"></i>
+  </a>
+
+  <div class="modal fade" id="createClassModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Classes</h5>
+          <h5 class="modal-title">Add subject</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <div class="row">
-            <div class="col-3">
-               <p style="background-color: rgb(197, 43, 102); text-align: center; color:white">Professor</p>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col">
+                <div class="row">
+                  <div class="input-group mb-1">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Name</span>
+                    </div>
+                    <input required type="text" class="form-control col-10" id="nameSearch" placeholder="Name">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-group mb-1">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Department</span>
+                    </div>
+                    <input required type="text" class="form-control col-10" id="departmentSearch" placeholder="Department">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Credits</span>
+                    </div>
+                    <select class="custom-select" id="creditsSelect">
+                      <option value="4" selected>4</option>
+                      <option value="8">8</option>
+                      <option value="10">10</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              
             </div>
-            <div class="col-3">
-              <p>Professor</p>
-           </div>
-          </div>
-
-          <div class="row">
-            <div class="col-3">
-               <p style="background-color: rgb(197, 43, 102); text-align: center; color:white">Days</p>
-            </div>
-            <div class="col-8">
-              <span><button id="monday" type="button" class="btn btn-info btn-sm">M</button></span>
-              <span><button id="tuesday" type="button" class="btn btn-info btn-sm">T</button></span>
-              <span><button id="wednesday" type="button" class="btn btn-info btn-sm">W</button></span>
-              <span><button id="thursday" type="button" class="btn btn-info btn-sm">T</button></span>
-              <span><button id="friday" type="button" class="btn btn-info btn-sm">F</button></span>
-           </div>
-          </div>
-         
+          </div>  
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn" style="background-color: #5bc0de; color: white;">Save changes</button>
+          <button type="button" class="btn" data-dismiss="modal" style="background-color: #7bbccf;color: white;">Close</button>
         </div>
       </div>
     </div>
