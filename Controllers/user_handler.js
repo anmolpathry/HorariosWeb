@@ -54,7 +54,7 @@ function login(req, res) {
             if (token != undefined) {
                 res.status(200)
                 res.set('Content-Type', 'text/plain; charset=utf-8');
-                res.send(token);
+                res.send(token, email);
             } else {
                 res.status(404);            
                 res.set('Content-Type', 'text/plain; charset=utf-8');
