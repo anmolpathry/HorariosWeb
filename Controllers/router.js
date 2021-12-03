@@ -9,10 +9,10 @@ const userHandler = require('./user_handler');
 const groupHandler = require('./group_handler');
 const subjectHandler = require('./subject_handler');
 
-router.use('/home.html', validateUtils.validateUser);
+/*router.use('/home.html', validateUtils.validateUser);
 router.use('/manage-schedule.html', validateUtils.validateUser);
 router.use('/admin-subjects.html', validateUtils.validateAdmin);
-router.use('/admin-groups.html', validateUtils.validateAdmin);
+router.use('/admin-groups.html', validateUtils.validateAdmin);*/
 
 //LOGIN
 router.route('/login')

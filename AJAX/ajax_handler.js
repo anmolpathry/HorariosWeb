@@ -13,8 +13,8 @@ async function loadSchedules(schedules_url) {
     return await response.json();
 }
 
-async function loadSchedule(subjects_url) {
-    let response = await fetch(subjects_url);
+async function loadSchedule(schedule_url) {
+    let response = await fetch(schedule_url);
     if(response.status != 200) return [];
     return await response.json();;
 }
@@ -46,14 +46,16 @@ async function postLogin(){
     xhr.setRequestHeader('Content-type', 'application/json');
     xhr.send(JSON.stringify(usr));
 
-    xhr.onreadystatechange = function(){
+    /*xhr.onreadystatechange = function(){
         if(this.status ==200 && this.readyState ==4){
             window.location.href = 'http://localhost:8080/home.html'
         }
-    }
+    }*/
     
     xhr.onload = () => {
         writeUserStorage(xhr.response);
+        console.log(xhr.response);
+        window.location.href = 'http://localhost:8080/home.html'
         //fetch('http://localhost:8080/users/' + JSON.parse(xhr.response).email, {Headers: {"x-auth": JSON.parse(xhr.response).token}});
         //window.location.href = 'http://localhost:8080/home.html'
         //console.log(JSON.parse(xhr.response).email);
