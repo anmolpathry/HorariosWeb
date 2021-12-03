@@ -31,13 +31,33 @@ html,body{
     text-shadow: 0px 1px 2px rgba(0,0,0,0.4);
 }
 
-#classesModal .input-group-text{
+#createGroupModal .input-group-text{
     background-color: #5bc0de;
     display: inline-block;
     vertical-align: middle;
     color: white;
     border-width:0;
     width: 100px;
+}
+
+#createGroupModal .top-input-text{
+    width: 100%;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;  
+}
+
+#createGroupModal .br-input{
+    border-top-right-radius: 0;  
+}
+
+#createGroupModal .bl-input{
+    border-top-left-radius: 0;  
+}
+
+#daySearch button{
+    width: 30px;
+    vertical-align: middle;
+    border-radius: 20px;
 }
 
 .table{

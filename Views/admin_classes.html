@@ -318,16 +318,16 @@
     </div>
   </div>
 
-  <a id="createScheduleButton" data-toggle="modal" data-target="#createClassModal" data-backdrop="false">
+  <a id="createScheduleButton" data-toggle="modal" data-target="#createGroupModal" data-backdrop="false">
     <i class="fa fa-plus-circle"></i>
   </a>
 
-  <div class="modal fade" id="createClassModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  <div class="modal fade" id="createGroupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Add subject</h5>
+          <h5 class="modal-title">Add group</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -339,7 +339,7 @@
                 <div class="row">
                   <div class="input-group mb-1">
                     <div class="input-group-prepend">
-                      <span class="input-group-text">Name</span>
+                      <span class="input-group-text">Code</span>
                     </div>
                     <input required type="text" class="form-control col-10" id="nameSearch" placeholder="Name">
                   </div>
@@ -347,37 +347,101 @@
                 <div class="row">
                   <div class="input-group mb-1">
                     <div class="input-group-prepend">
-                      <span class="input-group-text">Department</span>
+                      <span class="input-group-text">Subject</span>
                     </div>
-                    <input required type="text" class="form-control col-10" id="departmentSearch" placeholder="Department">
+                    <input required type="text" class="form-control col-10" id="classSubject" placeholder="Department">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-group mb-1">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Classroom</span>
+                    </div>
+                    <input required type="text" class="form-control col-10" id="classDepartment" placeholder="Department">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-group mb-1">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Professor</span>
+                    </div>
+                    <input required type="text" class="form-control col-10" id="classProfessor" placeholder="Department">
                   </div>
                 </div>
                 <div class="row">
                   <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                      <span class="input-group-text">Credits</span>
+                      <span class="input-group-text">Language</span>
                     </div>
-                    <select class="custom-select" id="creditsSelect">
-                      <option value="4" selected>4</option>
-                      <option value="8">8</option>
-                      <option value="10">10</option>
+                    <select class="custom-select" id="languageSelect">
+                      <option value="Español" selected>Español</option>
+                      <option value="Inglés">Inglés</option>
+                      <option value="Francés">Francés</option>
                     </select>
                   </div>
                 </div>
+                <div class="row">
+                  <div class="vertical-input-group">
+                    <div class="input-group mb-3">
+                      <span class="input-group-text top-input-text">Hours</span>
+                      <div id="classHours" class="input-group">
+                        <select class="custom-select bl-input" id="minHour">
+                          <option value="7" selected>7:00</option>
+                          <option value="9">9:00</option>
+                          <option value="11">11:00</option>
+                          <option value="13">13:00</option>
+                          <option value="16">16:00</option>
+                          <option value="18">18:00</option>
+                          <option value="20">20:00</option>
+                        </select>
+                        <select class="custom-select br-input" id="maxHour">
+                          <option value="9">9:00</option>
+                          <option value="11">11:00</option>
+                          <option value="13">13:00</option>
+                          <option value="16">16:00</option>
+                          <option value="18">18:00</option>
+                          <option value="20">20:00</option>
+                          <option value="22" selected>22:00</option>
+                        </select>
+                      </div>
+                      
+                    </div>
+  
+                  </div>
+
+                </div>
+                <div class="row">
+                  <div class="input-group mb-3 d-flex align-items-center justify-content-center">
+                    <span class="input-group-text mr-2">Days</span>
+                    <div id="daySearch">
+                      <button id="mon" type="button" class="btn btn-info btn-sm" style="padding-left: 7px;">M</button>
+                      <button id="tue" type="button" class="btn btn-info btn-sm">T</button>
+                      <button id="wed" type="button" class="btn btn-info btn-sm" style="padding-left: 7px;">W</button>
+                      <button id="thu" type="button" class="btn btn-info btn-sm">T</button>
+                      <button id="fri" type="button" class="btn btn-info btn-sm">F</button>
+                      <button id="sat" type="button" class="btn btn-info btn-sm">S</button>
+                    </div>
+                  </div>
+                </div>   
               </div>
               
             </div>
           </div>  
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn" style="background-color: #5bc0de; color: white;">Save changes</button>
-          <button type="button" class="btn" data-dismiss="modal" style="background-color: #7bbccf;color: white;">Close</button>
+          <button id="addG" type="button" class="btn" style="background-color: #5bc0de; color: white;">
+            Add group
+          </button>
+          <button type="button" class="btn" data-dismiss="modal" style="background-color: #7bbccf;color: white;">
+            Cancel
+          </button>
         </div>
       </div>
     </div>
   </div>
 
     <!-- Optional JavaScript -->
+    <script src="../AJAX/group_utils.js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
