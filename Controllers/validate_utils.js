@@ -26,7 +26,7 @@ const validateUser =  (req, res, next) => {
         if (err) return res.status(401).send("Invalid Token");
         req.userInfo = decoded;
         if (userInfo.role == 'USER') return next();
-        window.location.href = '../Views/admin_classes.html';
+        //window.location.href = '../Views/admin_classes.html';
     });
 };
 //userInfo = {email: userInfo.email, role: userInfo.role};
@@ -41,7 +41,7 @@ const validateAdmin =  (req, res, next) => {
         if (err) return res.status(401).send("Invalid Token");
         req.userInfo = decoded;
         if (userInfo.role == 'ADMIN') return next();
-        window.location.href = '../Views/home.html';
+        //window.location.href = '../Views/home.html';
     });
 };
 

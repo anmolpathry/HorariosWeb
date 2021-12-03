@@ -53,10 +53,18 @@ async function postLogin(){
     }*/
     
     xhr.onload = () => {
-        writeUserStorage(xhr.response);
-        console.log(xhr.response);
-        window.location.href = 'http://localhost:8080/home.html'
-        //fetch('http://localhost:8080/users/' + JSON.parse(xhr.response).email, {Headers: {"x-auth": JSON.parse(xhr.response).token}});
+        let response = xhr.response;
+        writeUserStorage(response);
+        console.log(response);
+
+    
+        if(JSON.parse(response).role == "ADMIN"){
+            console.log(readSession());
+            window.location.href = 'http://localhost:8080/admin_subjects.html'
+        }else{
+            console.log(readSession());
+            window.location.href = 'http://localhost:8080/home.html'
+        }
         //window.location.href = 'http://localhost:8080/home.html'
         //console.log(JSON.parse(xhr.response).email);
     }

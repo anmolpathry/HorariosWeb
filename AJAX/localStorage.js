@@ -1,10 +1,12 @@
 "use strict";
 
 function readSession(){
-   window.localStorage.getItem('user');
-   
+   let user = localStorage.getItem('user');
+   console.log(user);
+   return user;
 }
 
 function writeUserStorage(response){
-    window.localStorage.setItem('user', JSON.stringify(response));
+    console.log(response);
+    localStorage.setItem('user', response);
 }

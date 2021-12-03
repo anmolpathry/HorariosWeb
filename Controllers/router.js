@@ -62,33 +62,33 @@ router.route('/subjects/:name')
     .put((req, res) => subjectHandler.updateSubject(req, res))
     .delete((req, res) => subjectHandler.deleteSubject(req, res));
 
-/* //VIEWS
+//VIEWS
 router.get('/home', (req, res) => {
-    res.sendFile(path.join(__dirname, "../Views/home.html"));
+    res.sendFile(path.join(__dirname, "../AJAX/home.html"));
 });
 
 router.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, "../Views/login.html"));
+    res.sendFile(path.join(__dirname, "../AJAX/login.html"));
 });
 
 router.get('/signup', (req, res) => {
-    res.sendFile(path.join(__dirname, "../Views/signup.html"));
+    res.sendFile(path.join(__dirname, "../AJAX/signup.html"));
 });
 
 router.get('/change-password', (req, res) => {
-    res.sendFile(path.join(__dirname, "../Views/changepassword.html"));
+    res.sendFile(path.join(__dirname, "../AJAX/changepassword.html"));
 });
 
 router.get('/manage-schedule', (req, res) => {
-    res.sendFile(path.join(__dirname, "../Views/manage_schedule.html"));
+    res.sendFile(path.join(__dirname, "../AJAX/manage_schedule.html"));
 });
 
 router.get('/admin-subjects', (req, res) => {
-    res.sendFile(path.join(__dirname, "../Views/admin_subjects.html"));
+    res.sendFile(path.join(__dirname, "../AJAX/admin_subjects.html"));
 });
 
 router.get('/admin-classes', (req, res) => {
-    res.sendFile(path.join(__dirname, "../Views/admin_classes.html"));
-}); */
+    res.sendFile(path.join(__dirname, "../AJAX/admin_classes.html"));
+}); 
 
 module.exports = router;

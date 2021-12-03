@@ -47,6 +47,10 @@ function login(req, res) {
     let email = req.email;
     let password = req.password;
 
+    User.findOne({ email: `${email}` }).then(user =>{
+        res.send(user.role)
+    });
+
     console.log(email + " " + password);
     
     User.findOne({ email: `${email}` })
@@ -55,7 +59,7 @@ function login(req, res) {
             //console.log(token)
             if (token != undefined) {
                 res.status(200)
-                res.json({token, email});
+                res.json({"token": token,"role": user.role});
             } else {
                 res.status(404);            
                 res.set('Content-Type', 'text/plain; charset=utf-8');
