@@ -1,7 +1,5 @@
 "use strict";
 
-process.env.TOKEN_KEY = "Welcome1234";
-
 const express = require('express');
 const cors = require('cors');
 const router = require("./Controllers/router");
