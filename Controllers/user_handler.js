@@ -77,8 +77,9 @@ function getSchedules(req, res) {
 
 function createSchedule(req, res) {
     let schedule = Schedule(req.body);
-    
-    schedule.save().then((schedule) => {
+    User.findOne({ email: `${email}` }).schedules.push(schedule);
+
+    User.save().schedules.then((schedule) => {
         res.set('Content-Type', 'text/plain; charset=utf-8');
         res.send(`Schedule ${schedule.name} was created!`);
     });
@@ -87,9 +88,11 @@ function createSchedule(req, res) {
 function getScheduleByName(req, res) {
     let email = req.params.email;
     let name = req.params.name;
-    Schedule.findOne({email:`${email}` }).findOne({name:`${name}`}).then(schedule => res.status(200).json(schedule));
+    User.findOne({email:`${email}` })
+        .select('schedules -_id')
+        .findOne({name:`${name}`}).then(schedule => res.status(200).json(schedule));
 }
-/*
+
 function updateSchedule(req, res) {
     let email = req.params.email;
     let name = req.params.name;
@@ -98,24 +101,41 @@ function updateSchedule(req, res) {
         if (['name','period','groups'].includes(property)) continue;
         delete updatedSchedule[property];
     }
-    User.findOneAndUpdate({ email: `${email}` }, updatedSchedule, {new:true}).then(user => {
+    User.findOne({email:`${email}` })
+    .select('schedules -_id')
+    .findOneAndUpdate({ name: `${name}` }, updatedSchedule, {new:true}).then(schedule => {
         res.type('text/plain; charset=utf-8');
-        res.send(`User ${user.name} was updated!`);
+        res.send(`Schedule ${schedule.name} was updated!`);
     });
 }
 
-router.route('/users/:email/:name')
-    
-    .delete((req, res) => userHandler.deleteSchedule(req, res))
-    .put((req, res) => userHandler.updateSchedule(req, res));
+function deleteSubject(req, res) {
+    let email = req.params.email;
+    let name = req.params.name;
+
+    User.findOne({email:`${email}` })
+    .select('schedules -_id')
+    .findOneAndDelete({ name: `${name}` }).then(schedule => {
+        res.type('text/plain; charset=utf-8');
+        res.send(schedule != undefined ? `Schedule ${schedule.name} was deleted!` : `No schedule with name ${name} was found!`);
+    });
+}
+/*
+function addGroupToSchedule(req, res) {
+    let email = req.params.email;
+    let name = req.params.name;
+    let groupCode = req.params.groupCode;
+    User.findOne({ email: `${email}` }).schedules.groups.push(schedule);
+    User.save().then((schedule) => {
+        res.set('Content-Type', 'text/plain; charset=utf-8');
+        res.send(`Schedule ${schedule.name} was created!`);
+    });
+}
 
 router.route('/users/:email/:name/:group')
     .delete((req, res) => userHandler.deleteGroupFromSchedule(req, res));
 router.route('/users/schedules/groups/')
     .get((req, res) => userHandler.getScheduleGroups(req, res));
-
-
-
 
 */
 
@@ -125,6 +145,11 @@ exports.getUserByEmail = getUserByEmail;
 exports.createUser = createUser;
 exports.updateUser = updateUser;
 exports.login = login;
-/*
+
 exports.getSchedules = getSchedules;
-exports.createSchedule = createSchedule;*/
+exports.createSchedule = createSchedule;
+exports.getScheduleByName = getScheduleByName;
+exports.updateSchedule = updateSchedule;
+exports.deleteSubject = deleteSubject;
+/*exports.createSchedule = createSchedule;
+*/
