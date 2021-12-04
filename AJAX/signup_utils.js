@@ -1,4 +1,7 @@
 "use strict";
 
-//RUTAS QUE SE USARAN
-const signup = 'http://localhost:8080/signup'
+let btnSignup = document.getElementById('signupbtn');
+
+function signup2(){
+    signUp();
+}

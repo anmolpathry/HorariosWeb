@@ -5,7 +5,7 @@ const schedules = 'http://localhost:8080/users/schedules'
 const groups = 'http://localhost:8080/groups'
 const subjects = 'http://localhost:8080/subjects'
 const login = 'http://localhost:8080/login'
-const signup = 'http://localhost:8080/signup'
+const signup = 'http://localhost:8080/users'
 
 async function loadSchedules(schedules_url) {
     let response = await fetch(schedules_url);
@@ -40,33 +40,22 @@ async function postLogin(){
         password: document.getElementById('password').value
     };
 
-    console.log(usr);
-
     xhr.open('POST',login);
     xhr.setRequestHeader('Content-type', 'application/json');
     xhr.send(JSON.stringify(usr));
 
-    /*xhr.onreadystatechange = function(){
-        if(this.status ==200 && this.readyState ==4){
-            window.location.href = 'http://localhost:8080/home.html'
-        }
-    }*/
-    
     xhr.onload = () => {
         let response = xhr.response;
         writeUserStorage(response);
-        console.log(response);
+        //console.log(response);
 
-    
         if(JSON.parse(response).role == "ADMIN"){
-            console.log(readSession());
-            window.location.href = 'http://localhost:8080/admin_subjects.html'
+            //console.log(readSession());
+            window.location.href = 'http://localhost:8080/admin-subjects'
         }else{
-            console.log(readSession());
-            window.location.href = 'http://localhost:8080/home.html'
+            //console.log(readSession());
+            window.location.href = 'http://localhost:8080/home'
         }
-        //window.location.href = 'http://localhost:8080/home.html'
-        //console.log(JSON.parse(xhr.response).email);
     }
     return false;
 }
@@ -82,12 +71,14 @@ function signUp(){
         role:"USER"
     };
 
+    console.log(usr);
+
     xhr.open('POST',signup);
     xhr.setRequestHeader('Content-type', 'application/json');
     xhr.send(JSON.stringify(usr));
     xhr.onreadystatechange = function(){
         if(this.status==200 && this.readyState ==4){
-            window.location.href = 'http://localhost:8080/home.html'
+            window.location.href = 'http://localhost:8080/login'
         }
     }
     return false;
