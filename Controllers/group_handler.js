@@ -8,7 +8,14 @@ function getGroups(req, res) {
 
 function getGroupByCode(req, res) {
     let code = req.params.code;
+    console.log(code);
     Group.findOne({ code: `${code}` }).then(group => res.status(200).json(group));
+}
+
+function getGroupById(req, res) {
+    let id = req.params.id;
+    console.log(id);
+    Group.findById(id).then(group => res.status(200).json(group));
 }
 
 function createGroup(req, res) {
@@ -49,3 +56,4 @@ exports.getGroupByCode = getGroupByCode;
 exports.createGroup = createGroup;
 exports.updateGroup = updateGroup;
 exports.deleteGroup = deleteGroup;
+exports.getGroupById = getGroupById;

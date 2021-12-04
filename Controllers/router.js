@@ -51,7 +51,7 @@ router.route('/groups/:code')
     .get((req, res) => groupHandler.getGroupByCode(req, res))
     .put((req, res) => groupHandler.updateGroup(req, res))
     .delete((req, res) => groupHandler.deleteGroup(req, res));
-
+    
 //SUBJECTS
 router.route('/subjects/')
     .get((req, res) => subjectHandler.getSubjects(req, res))

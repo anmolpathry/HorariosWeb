@@ -1,37 +1,58 @@
 "use strict";
 
-//RUTAS QUE SE USARAN
-const schedule_url = "http://localhost:8080/users/schedules/";
-const schedules = document.getElementById('scheduleList');
-console.log("HOla");
-
 //schedule que sacaste
-/* let email = JSON.parse(readSession()).email;
-console.log(email); */
+const schedules_url = "http://localhost:8080/users/schedules/"
+const group_url = "http://localhost:8080/groups/"
 
-loadSchedules("http://localhost:8080/users/schedules/anmol@pruebas.com").then(
-    schedules => scheduleListToHTML(schedules)
-);
+let schedulesList = document.getElementById('scheduleList');
+console.log(schedulesList);
+
+let email = JSON.parse(readSession()).email;
+console.log(email); 
+
+loadSchedules(schedules_url + email).then(schedules => {
+  let usr_sched = schedules;
+  let s = "";
+
+  s += '<div class="card-deck justify-content-center"></div>\n';
+
+  Object.values(usr_sched)[0].forEach(schedule => {
+    let name = schedule.name;
+    let period = schedule.period;
+
+    s += scheduleCardToHTML(name, period);
+
+     /* for(let i=0; i < schedule.groups.length; i++){
+    loadClasses(group_url + schedule.groups[i]).then(group => {
+        console.log(group)});
+        console.log(group_url + "hola");
+     
+    }*/
+  });
+  
+  schedulesList.innerHTML = s + '\n</div>';
+
+});
+
 
 //Function To HTML
-function scheduleCard(schedule){
+function scheduleCardToHTML(name, period){
     return `
     <div class="card">
     <a id="scheduleLink" style="color: black;" class="button text-decoration-none" href>
     <div class="card-body">
-      <h5 id="scheduleName" class="card-title">${schedule.name}</h5>
+      <h5 id="scheduleName" class="card-title">${name}</h5>
     </div>
     <div class="card-footer">
-      <small class="text-muted">${schedule.period}</small>
+      <small class="text-muted">${period}</small>
     </div>
     </a>
   </div>
   `
 }
 
-function scheduleListToHTML(scheduleList){
-    schedules.innerHTML = '<div class="card-deck justify-content-center"></div>\n' + scheduleList.map(scheduleCard).join("\n") + '\n</div>';
-}
+
+
 
 /*function classToHTML(class){
     let classes ="";

@@ -1,9 +1,6 @@
 "use strict";
 
 //RUTAS QUE SE USARAN
-const schedules = 'http://localhost:8080/users/schedules'
-const groups = 'http://localhost:8080/groups'
-const subjects = 'http://localhost:8080/subjects'
 const login = 'http://localhost:8080/login'
 const signup = 'http://localhost:8080/users'
 

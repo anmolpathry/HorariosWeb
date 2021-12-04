@@ -15,7 +15,7 @@ let scheduleSchema = mongoose.Schema({
         required: true
     },
     groups: {
-        type: [{type: mongoose.Schema.Types.ObjectId, ref: 'group'}],
+        type: String,
         required: false
     },
     period: {
