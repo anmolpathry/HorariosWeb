@@ -88,9 +88,8 @@ function createSchedule(req, res) {
                 "groups": newSchedule.groups,
                 "period": newSchedule.period    
             }
-        }}, (err, result) => {
-            console.log(err);
-    }).then((user) => {
+        }}
+    ).then((user) => {
         res.set('Content-Type', 'text/plain; charset=utf-8');
         res.send(`Schedule ${newSchedule.name} was created!`);
     }).catch(err => {
