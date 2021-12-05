@@ -77,6 +77,19 @@
       </div>
     </div>
 
+    <div id="successAlert" class="alert alert-success alert-dismissible fade show" hidden role="alert">
+      <strong>Cambio realizado con éxito!</strong> 
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div id="failAlert" class="alert alert-danger alert-dismissible fade show" hidden role="alert">
+      <strong>Cambio realizado fallido!</strong> 
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
 
     <div id="right-side" class="col-11 ml-5">
       <table class="table table-sm table-bordered">
@@ -89,127 +102,9 @@
             <th scope="col">Delete</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <th class="table-success" scope="row">Microprocesadores</th>
-            <td class="table-success">
-              <p>DESI</p>
-            </td>
-            <td class="table-success">8</td>
-            <td class="table-success">
-              <button id="pencil" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
-                class="fas fa-pencil-alt"></i></button>
-            </td>
-            <td class="table-success">
-              <button id="pencil" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
-                class="fas fa-trash-alt"></i></button>
-            </td>
-          </tr>
-
-          <tr>
-            <th class="table-light" scope="row">Memoria Dinámica</th>
-            <td class="table-light">
-              <p>DESI</p>
-            </td>
-            <td class="table-light">8</td>
-            <td class="table-light">
-              <button id="pencil" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
-                class="fas fa-pencil-alt"></i></button>
-            </td>
-            <td class="table-light">
-              <button id="pencil" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
-                class="fas fa-trash-alt"></i></button>
-            </td>
-          </tr>
-
-          <tr>
-            <th class="table-light" scope="row">Contexto Histórico</th>
-            <td class="table-light">
-              <p>DESI</p>
-            </td>
-            <td class="table-light">8</td>
-            <td class="table-light">
-              <button id="pencil" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
-                class="fas fa-pencil-alt"></i></button>
-            </td>
-            <td class="table-light">
-              <button id="pencil" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
-                class="fas fa-trash-alt"></i></button>
-            </td>
-          </tr>
-
-          <tr>
-            <th class="table-light" scope="row">Probabilidad</th>
-            <td class="table-light">
-              <p>DESI</p>
-            </td>
-            <td class="table-light">8</td>
-            <td class="table-light">
-              <button id="pencil" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
-                class="fas fa-pencil-alt"></i></button>
-            </td>
-            <td class="table-light">
-              <button id="pencil" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
-                class="fas fa-trash-alt"></i></button>
-            </td>
-          </tr>
-
-          <tr>
-            <th class="table-light" scope="row">Redes</th>
-            <td class="table-light">
-              <p>DESI</p>
-            </td>
-            <td class="table-light">8</td>
-            <td class="table-light">
-              <button id="pencil" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
-                class="fas fa-pencil-alt"></i></button>
-            </td>
-            <td class="table-light">
-              <button id="pencil" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
-                class="fas fa-trash-alt"></i></button>
-            </td>
-          </tr>
-
-          <tr>
-              <th class="table-light" scope="row">Estrategias</th>
-            <td class="table-light">
-              <p>DESI</p>
-            </td>
-            <td class="table-light">8</td>
-            <td class="table-light">
-              <button id="pencil" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
-                class="fas fa-pencil-alt"></i></button>
-            </td>
-            <td class="table-light">
-              <button id="pencil" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
-                class="fas fa-trash-alt"></i></button>
-            </td>
-          </tr>
-
-          <tr >
-            <th class="table-light" scope="row">Fe y Cultura</th>
-            <td class="table-light">
-              <p>DESI</p>
-            </td>
-            <td class="table-light">8</td>
-            <td class="table-light">
-              <button id="pencil" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
-                class="fas fa-pencil-alt"></i></button>
-            </td>
-            <td class="table-light">
-              <button id="pencil" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
-                class="fas fa-trash-alt"></i></button>
-            </td>
-          </tr>
-
+        <tbody id="subjectRow">
         </tbody>
       </table>
-    </div>
-    </div>
-
-    </div>
-  </div>
-
   <a id="createScheduleButton" data-toggle="modal" data-target="#createClassModal" data-backdrop="false">
     <i class="fa fa-plus-circle"></i>
   </a>
@@ -233,7 +128,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text">Name</span>
                     </div>
-                    <input required type="text" class="form-control col-10" id="nameSearch" placeholder="Name">
+                    <input id="modalName" required type="text" class="form-control col-10" id="nameSearch" placeholder="Name">
                   </div>
                 </div>
                 <div class="row">
@@ -241,7 +136,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text">Department</span>
                     </div>
-                    <input required type="text" class="form-control col-10" id="departmentSearch" placeholder="Department">
+                    <input id="modalDepart" required type="text" class="form-control col-10" id="departmentSearch" placeholder="Department">
                   </div>
                 </div>
                 <div class="row">
@@ -250,7 +145,7 @@
                       <span class="input-group-text">Credits</span>
                     </div>
                     <select class="custom-select" id="creditsSelect">
-                      <option value="4" selected>4</option>
+                      <option value="4">4</option>
                       <option value="8">8</option>
                       <option value="10">10</option>
                     </select>
@@ -262,14 +157,19 @@
           </div>  
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn" style="background-color: #5bc0de; color: white;">Save changes</button>
+          <button onclick="addSub(event)" type="button" class="btn" style="background-color: #5bc0de; color: white;">Save changes</button>
           <button type="button" class="btn" data-dismiss="modal" style="background-color: #7bbccf;color: white;">Close</button>
         </div>
       </div>
     </div>
   </div>
 
-    <!-- Optional JavaScript -->
+ 
+     <!-- Optional JavaScript -->
+  <script src="localStorage.js"></script>
+  <script src="ajax_handler.js"></script>
+  <script src="subjects_utils.js"></script>
+  
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">

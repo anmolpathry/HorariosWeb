@@ -101,12 +101,11 @@ function putSchedule(url, schedule, onSuccess, onError){
     xhr.onload = () => getXhrResponse(xhr,onSuccess, onError);
 }
 
-function deleteSchedule(url, schedule, onSuccess, onError){
+function deleteSchedule(url, onSuccess, onError){
     let xhr = new XMLHttpRequest();
 
     xhr.open('DELETE',url);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify(schedule));
+    xhr.send();
     xhr.onload = () => getXhrResponse(xhr,onSuccess, onError);
 }
 
@@ -129,12 +128,11 @@ function putSubject(url, subject, onSuccess, onError){
     xhr.onload = () => getXhrResponse(xhr,onSuccess, onError);
 }
 
-function deleteSubject(url, subject, onSuccess, onError){
+function deleteSubject(url, onSuccess, onError){
     let xhr = new XMLHttpRequest();
 
     xhr.open('DELETE',url);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify(subject));
+    xhr.send();
     xhr.onload = () => getXhrResponse(xhr,onSuccess, onError);
 }
 
@@ -157,12 +155,11 @@ function putGroup(url, group, onSuccess, onError){
     xhr.onload = () => getXhrResponse(xhr,onSuccess, onError);
 }
 
-function deleteGroup(url, group, onSuccess, onError){
+function deleteGroup(url, onSuccess, onError){
     let xhr = new XMLHttpRequest();
 
     xhr.open('DELETE',url);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify(group));
+    xhr.send();
     xhr.onload = () => getXhrResponse(xhr,onSuccess, onError);
 }
 
