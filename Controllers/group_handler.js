@@ -3,7 +3,7 @@
 const Group = require('../Models/group')
 
 function getGroups(req, res) {
-    Group.find({}).then(groups => res.status(200).json(groups));
+    Group.find({}).sort('subject').then(groups => res.status(200).json(groups));
 }
 
 function getGroupByCode(req, res) {

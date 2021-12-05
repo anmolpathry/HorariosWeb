@@ -3,7 +3,7 @@
 const Subject = require('../Models/subject')
 
 function getSubjects(req, res) {
-    Subject.find({}).then(subjects => res.status(200).json(subjects));
+    Subject.find({}).sort('name').then(subjects => res.status(200).json(subjects));
 }
 
 function getSubjectByName(req, res) {
