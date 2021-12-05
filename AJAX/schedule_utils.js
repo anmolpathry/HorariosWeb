@@ -17,6 +17,7 @@ let table = document.getElementsByClassName('table')[0].querySelector('tbody');
 console.log(table);
 
 let selectedSchedule = "";
+let selectedScheduleCard = null;
 
 function loadCardSchedules() {
   loadSchedules(schedules_url + email).then(schedules => {
@@ -44,9 +45,9 @@ loadCardSchedules();
 function scheduleCardToHTML(name, period) {
   return `
     <div class="card">
-    <a id="scheduleLink" style="color: black;" class="button text-decoration-none" href>
-    <div onclick="selectSchedule(event)" class="card-body">
-      <h5 id="scheduleName" class="card-title">${name}</h5>
+    <a id="scheduleLink" style="color: black;" class="button text-decoration-none"  onclick="selectSchedule(this)">
+    <div class="card-body">
+      <h5 id="scheduleName" class="card-title" disabled>${name}</h5>
     </div>
     <div class="card-footer">
       <small class="text-muted">${period}</small>
@@ -57,7 +58,6 @@ function scheduleCardToHTML(name, period) {
 }
 
 let clases = " ";
-let sched = " ";
 //obtener grupos
 function loadGroups(name) {
   loadSchedule(schedules_url + email + '/' + name).then(schedule => {
@@ -80,7 +80,7 @@ function loadGroups(name) {
         clases += classToHTML(name, code, professor, classroom, language);
         //console.log(i);
         changeInnerHTML(clases);
-        sched += scheduleToHTML(name, code, days, hours);
+        scheduleToHTML(name, code, days, hours);
         //changeTableHTML(sched);
       });
     }
@@ -89,14 +89,28 @@ function loadGroups(name) {
 }
 
 function changeInnerHTML(classes) {
-  //console.log(clases);
-  scheduleClasses.innerHTML = clases;
+  scheduleClasses.innerHTML = classes;
 }
 
 //onclick en cards para seleccionar horario
-function selectSchedule(event){
-  console.log(event.target);
-  //loadGroups(selectedSchedule);
+function selectSchedule(scheduleLink){
+  let clickedSchedule = scheduleLink.querySelector('.card-body #scheduleName').innerHTML;
+  if (selectedSchedule == clickedSchedule) return;
+  selectedSchedule = clickedSchedule;
+  
+  if(selectedScheduleCard != null) selectedScheduleCard.style.background = '#e3f2fd';
+  selectedScheduleCard = scheduleLink.querySelector('.card-body');
+  selectedScheduleCard.style.background = '#8fa7e4';
+
+  table.querySelectorAll('td').forEach(cell => { 
+    cell.classList.remove('table-success');
+    cell.classList.add('table-light');
+    cell.innerHTML = "";
+  });
+  scheduleClasses.innerHTML="";
+  clases = " ";
+  
+  loadGroups(selectedSchedule);
 }
 
 loadGroups(selectedSchedule);
@@ -142,23 +156,18 @@ var DaysEnum = {
 function scheduleToHTML(name, code, days, hours) {
   for(let i=0; i<days.length; i++){
     let rowNum = parseInt(hours.split("-")[0])-7;
-    //let rowNum = 0;
     let row = table.querySelector('tr:nth-of-type(n+'+rowNum+')');
-    //console.log(row);
 
     let colNum = DaysEnum[days[i]]+1;
-    console.log(name + "" + colNum);
-    let col = row.querySelector('td:nth-of-type(n+'+colNum+')');
-    console.log(col);
+    let cell = row.querySelector('td:nth-of-type(n+'+colNum+')');
 
-    col.innerHTML = 
+    cell.innerHTML = 
     `       
     <p title="${name}" >${name}</p>
     <p title="${code}">${code}</p>
-    `
-
-   col.classList.add('table-success');
-   col.classList.remove('table-light');
+    `;
+    cell.classList.remove('table-light');
+    cell.classList.add('table-success');
   }
   
 }

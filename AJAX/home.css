@@ -30,6 +30,7 @@ overflow-x: hidden;
     color: #f06e9d;
     margin-left: 10px;
     position: relative;
+    cursor: pointer;
 }
 
 #createScheduleButton:hover{
@@ -120,10 +121,7 @@ overflow-x: hidden;
 }
 
 #scheduleList .card-body:hover{
-    background-color: #c2d3df;
-}
-#scheduleList .card-body:active{
-    background-color: #8fa7e4;
+    background-color: #c2d3df !important;
 }
 
 #scheduleList .card-body{  
@@ -133,6 +131,10 @@ overflow-x: hidden;
     border-radius: 5px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
+    
+}
+#scheduleList .card{
+    cursor: pointer;
 }
 
 #scheduleList #scheduleName{  
