@@ -3,18 +3,33 @@
 const Group = require('../Models/group')
 
 function getGroups(req, res) {
-    Group.find({}).sort('subject').then(groups => res.status(200).json(groups));
+    if (Object.keys(req.query).length === 0)
+        Group.find({}).sort('subject').then(groups => res.status(200).json(groups));
+    else{
+        const {subject, professor, language, days, hours, sortBy} = req.query;
+        let sortQ = 'subject';
+        let query = {};
+        if(sortBy) sortQ = sortBy;
+        if(subject) query.subject = subject;
+        if(professor) query.professor = professor;
+        if(language) query.language = language;
+        if(days) query.days = { $all: days };
+        if(hours){
+            /*let minHour = parseInt(hours[0].split("-")[0]);
+            let minHour = parseInt(hours[0].split("-")[0]);
+            query.hours = { $gte: hours[0], $lte: hours[1] };*/
+        } 
+        Group.find(query).sort(sortQ).then(groups => res.status(200).json(groups));
+    }
 }
 
 function getGroupByCode(req, res) {
     let code = req.params.code;
-    console.log(code);
     Group.findOne({ code: `${code}` }).then(group => res.status(200).json(group));
 }
 
 function getGroupById(req, res) {
     let id = req.params.id;
-    console.log(id);
     Group.findById(id).then(group => res.status(200).json(group));
 }
 

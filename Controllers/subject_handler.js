@@ -3,7 +3,18 @@
 const Subject = require('../Models/subject')
 
 function getSubjects(req, res) {
-    Subject.find({}).sort('name').then(subjects => res.status(200).json(subjects));
+    if (Object.keys(req.query).length === 0)
+        Subject.find({}).sort('name').then(subjects => res.status(200).json(subjects));
+    else{
+        const {credits, department, sortBy} = req.query;
+        let sortQ = 'name';
+        let query = {};
+        if(credits) query.credits = credits;
+        if(department) query.department = department;
+        if(sortBy) sortQ = sortBy;
+
+        Subject.find(query).sort(sortQ).then(subjects => res.status(200).json(subjects));
+    }
 }
 
 function getSubjectByName(req, res) {
