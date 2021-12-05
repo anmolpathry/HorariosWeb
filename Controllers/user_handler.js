@@ -47,16 +47,6 @@ function login(req, res) {
     let email = req.email;
     let password = req.password;
 
-    User.findOne({ email: `${email}` }).then(user =>{
-        res.send(user.role)
-    });
-
-    User.findOne({ email: `${email}` }).then(user =>{
-        res.send(user.email)
-    });
-
-    console.log(email + " " + password);
-    
     User.findOne({ email: `${email}` })
         .then(user => {
             let token = user.generateToken(password);
@@ -117,7 +107,7 @@ function getScheduleByName(req, res) {
             res.send(`Schedule not found`);
         });
 }
-/*
+
 function updateSchedule(req, res) {
     let email = req.params.email;
     let name = req.params.name;
@@ -126,13 +116,20 @@ function updateSchedule(req, res) {
         if (['name','period','groups'].includes(property)) continue;
         delete updatedSchedule[property];
     }
-    User.findOne({email:`${email}` })
-    .select('schedules -_id')
-    .findOneAndUpdate({ name: `${name}` }, updatedSchedule, {new:true}).then(schedule => {
+    User.findOneAndUpdate({ email: `${email}`, "schedules.name":`${name}`}, {
+        $set: {
+            schedules: { name: `${name}`},
+            
+        }}
+    ).then(user => {
         res.type('text/plain; charset=utf-8');
-        res.send(`Schedule ${schedule.name} was updated!`);
+        res.send(`${user.name}'s schedule ${name} was deleted`);
+    }).catch(err => {
+        res.status(404);            
+        res.set('Content-Type', 'text/plain; charset=utf-8');
+        res.send(`Schedule not found`);
     });
-}*/
+}/**/
 
 function deleteSchedule(req, res) {
     let email = req.params.email;
@@ -142,11 +139,10 @@ function deleteSchedule(req, res) {
         $pull: {
             schedules: { name: `${name}`},
         }}, {safe:true, multi:false}
-    ).then(schedule => {
+    ).then(user => {
         res.type('text/plain; charset=utf-8');
-        res.send(`Schedule ${name} was deleted`);
+        res.send(`${user.name}'s schedule ${name} was deleted`);
     }).catch(err => {
-        console.log(err);
         res.status(404);            
         res.set('Content-Type', 'text/plain; charset=utf-8');
         res.send(`Schedule not found`);
@@ -182,7 +178,7 @@ exports.login = login;
 exports.getSchedules = getSchedules;
 exports.createSchedule = createSchedule;
 exports.getScheduleByName = getScheduleByName;
-//exports.updateSchedule = updateSchedule;
+exports.updateSchedule = updateSchedule;
 exports.deleteSchedule = deleteSchedule;
 /*exports.createSchedule = createSchedule;
 */
