@@ -194,10 +194,10 @@ function deleteGroupSchedule(code){
     //Llamada a AJAX
     deleteGroupFromSchedule(deleteGr_url + email + '/' + selectedSchedule + '/' + code, msg => {
         console.log(msg);
-        loadGroups(selectedSchedule) 
+        //loadGroups(selectedSchedule) 
     }, err => console.log(err));
 
-    loadGroups(selectedSchedule) 
+    //loadGroups(selectedSchedule) 
 
 }
 

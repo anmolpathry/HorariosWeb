@@ -1,8 +1,8 @@
 "use strict";
 
-const groups_url = "http://localhost:8080/groups/";
+const groups_url = "http://localhost:8080/groups";
 
-let classRow = document.getElementById('classRow');
+let tableContainer = document.getElementById('tableContainer');
 let Subject = document.getElementById('Subject');
 
 let email = JSON.parse(readSession()).email;
@@ -21,13 +21,10 @@ let oldLang= "";
 
 function displayClasses() {
     // load users from server and display them
-    loadClasses(groups_url).then(groups => {
-
-        let clas = groups;
+    loadClasses(groups_url+'?sortBy=subject').then(groups => {
         let s = "";
-
-    
-        Object.values(clas).forEach(group => {
+        let currentSubject = null;
+        Object.values(groups).forEach(group => {
            let id = group.code;
            let prof = group.professor;
            let days = group.days;
@@ -36,33 +33,38 @@ function displayClasses() {
            let language = group.language;
            let subject = group.subject;
 
-           s+= `
-          
-        <thead class="table-secondary col-11">
-          <tr>
-            <th id="Subject" colspan="7" style="background-color: rgb(84, 25, 139); color:white">${subject}</th>
-          </tr>
-        </thead>
+           if (currentSubject == null || currentSubject!=subject){
+                if (currentSubject != null) s+='</table>';    
+                currentSubject = subject;
+                    
+                s+= 
+                `
+                <table class="table table-sm table-bordered mt-3">
+                <thead class="table-secondary col-11">
+                <tr>
+                    <th id="Subject" colspan="7" style="background-color: rgb(84, 25, 139); color:white">${subject}</th>
+                </tr>
+                </thead>
+    
+                <thead >
+                <tr class="table-secondary">
+                    <th scope="col">Class ID</th>
+                    <th scope="col">Professor</th>
+                    <th scope="col">Schedule</th>
+                    <th scope="col">Classroom</th>
+                    <th scope="col">Language</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+                </thead>`;
 
-        <thead >
-          <tr class="table-secondary">
-            <th scope="col">Class ID</th>
-            <th scope="col">Professor</th>
-            <th scope="col">Schedule</th>
-            <th scope="col">Classroom</th>
-            <th scope="col">Language</th>
-            <th scope="col">Edit</th>
-            <th scope="col">Delete</th>
-          </tr>
-        </thead>
-           `
-
+           }
             //console.log(name);
             s += subRowToHTML(id, prof, days, hours, classroom, language, subject);
 
         });
 
-        classRow.innerHTML = s + '\n</div>';
+        tableContainer.innerHTML = s + '\n</div>';
 
     });
 
@@ -74,70 +76,70 @@ displayClasses();
 function subRowToHTML(id, prof, days, hours, classroom, language) {
     //console.log(name);
     return `
-
     <tr>
-<th class="table-light" scope="row">
-<input disabled type="text" id="subjDep" value= "${id}""
-    style = "border-style: none; background-color: white; font-size: 13px; color: black;">
-</th>
+        <th class="table-light" scope="row">
+        <input disabled type="text" id="subjDep" value= "${id}""
+            style = "border-style: none; background-color: white; font-size: 13px; color: black;">
+        </th>
 
-<td class="table-light">
-<input disabled type="text" id="subjDep" value= "${prof}""
-style = "border-style: none; background-color: white; font-size: 13px; color: black;">
-</td>
+        <td class="table-light">
+        <input disabled type="text" id="subjDep" value= "${prof}""
+        style = "border-style: none; background-color: white; font-size: 13px; color: black;">
+        </td>
 
-<td class="table-light">
-<input disabled type="text" id="subjDep" value= "${days} ${hours}""
-style = "border-style: none; background-color: white; font-size: 13px; color: black;">
-</td>
+        <td class="table-light">
+        <input disabled type="text" id="subjDep" value= "${days} ${hours}""
+        style = "border-style: none; background-color: white; font-size: 13px; color: black;">
+        </td>
 
-<td class="table-light">
-<input disabled type="text" id="subjDep" value= "${classroom}""
-    style = "border-style: none; background-color: white; font-size: 13px; color: black;">
-</td>
-<td class="table-light">
-<input disabled type="text" id="subjDep" value= "${language}""
-style = "border-style: none; background-color: white; font-size: 13px; color: black;">
-</td>
+        <td class="table-light">
+        <input disabled type="text" id="subjDep" value= "${classroom}""
+            style = "border-style: none; background-color: white; font-size: 13px; color: black;">
+        </td>
+        <td class="table-light">
+        <input disabled type="text" id="subjDep" value= "${language}""
+        style = "border-style: none; background-color: white; font-size: 13px; color: black;">
+        </td>
 
-<td class="table-light">
+        <td class="table-light">
 
-<button onclick="editClass(event)" id="edit" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
-  class="fas fa-pencil-alt"></i></button>
+        <button onclick="editClass(event)" id="edit" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
+        class="fas fa-pencil-alt"></i></button>
 
-  <button type="button" class="btn btn-success btn-sm" id="confirm" hidden onclick="saveChanges(event)" >
-  <i class="fas fa-check-circle"></i></button>
+        <button type="button" class="btn btn-success btn-sm" id="confirm" hidden onclick="saveChanges(event)" >
+        <i class="fas fa-check-circle"></i></button>
 
-  <button type="button" class="btn btn-danger btn-sm" id="cancel" hidden onclick="cancelChanges(event)" >
-  <i class="fas fa-times-circle"></i></button>
- 
-</div>
+        <button type="button" class="btn btn-danger btn-sm" id="cancel" hidden onclick="cancelChanges(event)" >
+        <i class="fas fa-times-circle"></i></button>
+        
+        </div>
 
-</td>
-<td class="table-light">
-<button onclick="deleteClass(event)" id="delete" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
-  class="fas fa-trash-alt"></i></button>
-</td>
-</tr>
-    `
+        </td>
+        <td class="table-light">
+        <button onclick="deleteClass(event)" id="delete" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
+        class="fas fa-trash-alt"></i></button>
+        </td>
+    </tr>
+        `
 }
 
 
 
 function editClass(event){
-    let edit = event.target;
-    let confirm = event.target.parentNode.getElementsByClassName('btn btn-success')[0];
-    let cancel = event.target.parentNode.getElementsByClassName('btn btn-danger')[0];
+    console.log(event.currentTarget);
+    let edit = event.currentTarget;
+    let confirm = edit.parentNode.getElementsByClassName('btn btn-success')[0];
+    let cancel = edit.parentNode.getElementsByClassName('btn btn-danger')[0];
 
     edit.setAttribute("hidden", true);
     confirm.removeAttribute("hidden");
     cancel.removeAttribute("hidden");
 
-    let id = event.target.parentNode.parentNode.getElementsByTagName('input')[0];
-    let prof = event.target.parentNode.parentNode.getElementsByTagName('input')[1];
-    let sch= event.target.parentNode.parentNode.getElementsByTagName('input')[2];
-    let clasr = event.target.parentNode.parentNode.getElementsByTagName('input')[3];
-    let lang= event.target.parentNode.parentNode.getElementsByTagName('input')[4];
+    let id = edit.parentNode.parentNode.getElementsByTagName('input')[0];
+    let prof = edit.parentNode.parentNode.getElementsByTagName('input')[1];
+    let sch= edit.parentNode.parentNode.getElementsByTagName('input')[2];
+    let clasr = edit.parentNode.parentNode.getElementsByTagName('input')[3];
+    let lang= edit.parentNode.parentNode.getElementsByTagName('input')[4];
 
     oldId = id.value;
     oldProf = prof.value;
@@ -156,12 +158,13 @@ function editClass(event){
 }
 
 function saveChanges(event){
-    let parent = event.target.parentNode.parentNode;
-    let id = event.target.parentNode.parentNode.getElementsByTagName('input')[0];
-    let prof = event.target.parentNode.parentNode.getElementsByTagName('input')[1];
-    let sch= event.target.parentNode.parentNode.getElementsByTagName('input')[2];
-    let clasr = event.target.parentNode.parentNode.getElementsByTagName('input')[3];
-    let lang= event.target.parentNode.parentNode.getElementsByTagName('input')[4];
+    let save = event.currentTarget;
+    let parent = save.parentNode.parentNode;
+    let id = save.parentNode.parentNode.getElementsByTagName('input')[0];
+    let prof = save.parentNode.parentNode.getElementsByTagName('input')[1];
+    let sch= save.parentNode.parentNode.getElementsByTagName('input')[2];
+    let clasr = save.parentNode.parentNode.getElementsByTagName('input')[3];
+    let lang= save.parentNode.parentNode.getElementsByTagName('input')[4];
     let edit = parent.getElementsByClassName('btn btn-dark')[0];
     let cancel = parent.getElementsByClassName('btn btn-danger')[0];
     let confirm = parent.getElementsByClassName('btn btn-success')[0];
@@ -198,12 +201,13 @@ function saveChanges(event){
 }
 
 function cancelChanges(event){
-    let parent = event.target.parentNode.parentNode;
-    let id = event.target.parentNode.parentNode.getElementsByTagName('input')[0];
-    let prof = event.target.parentNode.parentNode.getElementsByTagName('input')[1];
-    let sch= event.target.parentNode.parentNode.getElementsByTagName('input')[2];
-    let clasr = event.target.parentNode.parentNode.getElementsByTagName('input')[3];
-    let lang= event.target.parentNode.parentNode.getElementsByTagName('input')[4];
+    let cancelButton = event.currentTarget;
+    let parent = cancelButton.parentNode.parentNode;
+    let id = cancelButton.parentNode.parentNode.getElementsByTagName('input')[0];
+    let prof = cancelButton.parentNode.parentNode.getElementsByTagName('input')[1];
+    let sch= cancelButton.parentNode.parentNode.getElementsByTagName('input')[2];
+    let clasr = cancelButton.parentNode.parentNode.getElementsByTagName('input')[3];
+    let lang= cancelButton.parentNode.parentNode.getElementsByTagName('input')[4];
     let edit = parent.getElementsByClassName('btn btn-dark')[0];
     let cancel = parent.getElementsByClassName('btn btn-danger')[0];
     let confirm = parent.getElementsByClassName('btn btn-success')[0];
