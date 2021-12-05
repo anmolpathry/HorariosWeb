@@ -84,23 +84,40 @@ function getSchedules(req, res) {
 }
 
 function createSchedule(req, res) {
-    let schedule = Schedule(req.body);
-    User.findOne({ email: `${email}` }).schedules.push(schedule);
+    let email = req.params.email;
+    let newSchedule = req.body;
+ 
+    User.findOneAndUpdate(
+        {email:`${email}`}, 
+        { $push: { 'schedules': 
+            {
+                "name": newSchedule.name,
+                "groups": newSchedule.groups,
+                "period": newSchedule.period    
+            }
+        }}, (err, result) => {
+            console.log(err);
+    });
 
-    User.save().schedules.then((schedule) => {
+    User.findOne({ email: `${email}` }).select('schedules -_id')
+        .then((schedule) => {
         res.set('Content-Type', 'text/plain; charset=utf-8');
-        res.send(`Schedule ${schedule.name} was created!`);
+        res.send(`Schedule ${newSchedule.name} was created!`);
     });
 }
 
 function getScheduleByName(req, res) {
     let email = req.params.email;
     let name = req.params.name;
-    User.findOne({email:`${email}` })
-        .select('schedules -_id')
-        .findOne({name:`${name}`}).then(schedule => res.status(200).json(schedule));
+    User.findOne({email:`${email}`, "schedules.name":`${name}`},{ "schedules.$": 1 }).select('-_id')
+        .then(schedule => res.status(200).json(schedule.schedules[0]))
+        .catch(err => {
+            res.status(404);            
+            res.set('Content-Type', 'text/plain; charset=utf-8');
+            res.send(`Schedule not found`);
+        });
 }
-
+/*
 function updateSchedule(req, res) {
     let email = req.params.email;
     let name = req.params.name;
@@ -115,18 +132,26 @@ function updateSchedule(req, res) {
         res.type('text/plain; charset=utf-8');
         res.send(`Schedule ${schedule.name} was updated!`);
     });
-}
+}*/
 
-function deleteSubject(req, res) {
+function deleteSchedule(req, res) {
     let email = req.params.email;
     let name = req.params.name;
-
-    User.findOne({email:`${email}` })
-    .select('schedules -_id')
-    .findOneAndDelete({ name: `${name}` }).then(schedule => {
+    
+    User.findOneAndUpdate({ email: `${email}` }, {
+        $pull: {
+            schedules: { name: `${name}`},
+        }}, {safe:true, multi:false}
+    ).then(schedule => {
         res.type('text/plain; charset=utf-8');
-        res.send(schedule != undefined ? `Schedule ${schedule.name} was deleted!` : `No schedule with name ${name} was found!`);
+        res.send(`Schedule ${name} was deleted`);
+    }).catch(err => {
+        console.log(err);
+        res.status(404);            
+        res.set('Content-Type', 'text/plain; charset=utf-8');
+        res.send(`Schedule not found`);
     });
+
 }
 /*
 function addGroupToSchedule(req, res) {
@@ -157,7 +182,7 @@ exports.login = login;
 exports.getSchedules = getSchedules;
 exports.createSchedule = createSchedule;
 exports.getScheduleByName = getScheduleByName;
-exports.updateSchedule = updateSchedule;
-exports.deleteSubject = deleteSubject;
+//exports.updateSchedule = updateSchedule;
+exports.deleteSchedule = deleteSchedule;
 /*exports.createSchedule = createSchedule;
 */

@@ -6,7 +6,9 @@ mongoose.connect(mongoDB, { useNewUrlParser: true });
 let subjectSchema = mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        unique: true,
+        dropDups: true
     },
     department: {
         type: String,

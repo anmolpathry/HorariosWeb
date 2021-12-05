@@ -12,11 +12,13 @@ mongoose.connect(mongoDB, { useNewUrlParser: true });
 let scheduleSchema = mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        unique: true,
+        dropDups: true
     },
     groups: {
-        type: String,
-        required: false
+        type: [String],
+        required: true
     },
     period: {
         type: String,
@@ -31,7 +33,9 @@ let userSchema = mongoose.Schema({
     },
     email: {
         type: String,
-        required: true
+        required: true,
+        unique: true,
+        dropDups: true
     },
     password: {
         type: String,

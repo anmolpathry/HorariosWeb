@@ -6,7 +6,9 @@ mongoose.connect(mongoDB, { useNewUrlParser: true });
 let groupSchema = mongoose.Schema({
     code: {
         type: String,
-        required: true
+        required: true,
+        unique: true,
+        dropDups: true
     },
     subject: {
         type: String,
