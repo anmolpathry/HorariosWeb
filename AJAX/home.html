@@ -143,7 +143,7 @@
         </div>
         <div class="col-sm-md-2 mr-3">
           <button onclick="changeWindow(event)" id="editSchedule" type="button" class="btn btn-lg" style="background-color: transparent;"> <i style="color:#678da8; " class="fas fa-pen"></i></button>
-          <button id="deleteSchedule" type="button" class="btn btn-lg" style="background-color: transparent;"> <i style="color:#678da8;" class="fas fa-trash-alt"></i></button>
+          <button onclick="deleteSched(event)" id="deleteSchedule" type="button" class="btn btn-lg" style="background-color: transparent;"> <i style="color:#678da8;" class="fas fa-trash-alt"></i></button>
         </div>
       </div>
 
@@ -193,7 +193,7 @@
                             <div class="input-group-prepend">
                               <span class="input-group-text">Name</span>
                             </div>
-                            <input required type="text" class="form-control col-10" id="scheduleName" placeholder="Name your schedule" minLength="1" maxlength="20">
+                            <input required type="text" class="form-control col-10" id="schedNameModal" placeholder="Name your schedule" minLength="1" maxlength="20">
                           </div>
                         </div>
                         <div class="row">
@@ -216,7 +216,7 @@
                         </div>
                       </div>
                       <div class="col-md-4 ml-auto">
-                        <button type="button" class="btn btn-block" style="background-color: #f06e9d; color:white;">Create!</button>
+                        <button onclick="addSched(event)" id="CreateSched" type="button" class="btn btn-block" style="background-color: #f06e9d; color:white;">Create!</button>
                         <button type="button" class="btn btn-block" style="background-color: #86b1cf; color:white;" data-dismiss="modal">Cancel</button>
                       </div>
                     </div>

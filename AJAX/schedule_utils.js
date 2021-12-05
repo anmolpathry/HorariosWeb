@@ -173,9 +173,49 @@ function scheduleToHTML(name, code, days, hours) {
 }
 
 //POST de horario con modal
+let season = "Fall";
+let year = "2021";
+
+document.getElementById('periodYear').addEventListener('change', function () {
+  year = this.value;
+});
+
+document.getElementById('periodSeason').addEventListener('change', function () {
+  season = this.value;
+});
+
+function addSched(event){
+  let name = document.getElementById('schedNameModal');
+  let period = season + " " + year;
+
+  let sched = {
+    "name": name.value,
+    "period": period
+  }
+
+  console.log(sched)
+
+  //LLAMADA A AJAX
+  postSchedule(schedules_url + email, sched, msg => {
+    console.log(msg);
+    loadCardSchedules();
+  }, err => console.log(err)); 
+}
+
 
 //DELETE horario
+function deleteSched(event){
+  let schedName = document.getElementById('schedName');
 
+  //LLAMADA A AJAX
+  deleteSchedule(schedules_url + email + '/' + selectedSchedule, msg => {
+    loadCardSchedules();
+    console.log(msg);
+  }, err => console.log(err));
+
+  schedName.innerHTML = "Selecciona un Horario";
+
+}
 //cambiar ventana
 let editSchedule = document.getElementById('editSchedule');
 
