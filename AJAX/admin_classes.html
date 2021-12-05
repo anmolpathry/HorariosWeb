@@ -82,13 +82,26 @@
       </div>
     </div>
 
+    <div id="successAlert" class="alert alert-success alert-dismissible fade show" hidden role="alert">
+      <strong>Cambio realizado con éxito!</strong> 
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div id="failAlert" class="alert alert-danger alert-dismissible fade show" hidden role="alert">
+      <strong>Cambio realizado fallido!</strong> 
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
 
     <div id="right-side" class="col-11 ml-5">
       <table class="table table-sm table-bordered">
 
-        <thead class="table-secondary col-11">
+     <!--    <thead class="table-secondary col-11">
           <tr>
-            <th colspan="7" style="background-color: rgb(84, 25, 139); color:white">Microprocesadores</th>
+            <th id="Subject" colspan="7" style="background-color: rgb(84, 25, 139); color:white">Microprocesadores</th>
           </tr>
         </thead>
 
@@ -102,26 +115,8 @@
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
           </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th class="table-success" scope="row">DESI13EF</th>
-            <td class="table-success">
-              <p>Mario Peredo</p>
-            </td>
-            <td class="table-success">M-W  7-9</td>
-            <td class="table-success">A-208</td>
-            <td class="table-success">Spanish</td>
-            <td class="table-success">
-              <button id="pencil" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
-                class="fas fa-pencil-alt"></i></button>
-            </td>
-            <td class="table-success">
-              <button id="pencil" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
-                class="fas fa-trash-alt"></i></button>
-            </td>
-          </tr>
-
+        </thead> -->
+        <tbody id="classRow">
           <tr>
             <th class="table-light" scope="row">DESI13EF</th>
             <td class="table-light">
@@ -193,128 +188,11 @@
                 class="fas fa-trash-alt"></i></button>
             </td>
           </tr>
-
-      
         </tbody>
       </table>
 
-      <table class="table table-sm table-bordered">
-
-        <thead class="table-secondary col-11">
-          <tr>
-            <th colspan="7" style="background-color: rgb(84, 25, 139); color:white">Microprocesadores</th>
-          </tr>
-        </thead>
-
-        <thead class="table-secondary">
-          <tr>
-            <th scope="col">Class ID</th>
-            <th scope="col">Professor</th>
-            <th scope="col">Schedule</th>
-            <th scope="col">Classroom</th>
-            <th scope="col">Language</th>
-            <th scope="col">Edit</th>
-            <th scope="col">Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th class="table-success" scope="row">DESI13EF</th>
-            <td class="table-success">
-              <p>Mario Peredo</p>
-            </td>
-            <td class="table-success">M-W  7-9</td>
-            <td class="table-success">A-208</td>
-            <td class="table-success">Spanish</td>
-            <td class="table-success">
-              <button id="pencil" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
-                class="fas fa-pencil-alt"></i></button>
-            </td>
-            <td class="table-success">
-              <button id="pencil" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
-                class="fas fa-trash-alt"></i></button>
-            </td>
-          </tr>
-
-          <tr>
-            <th class="table-light" scope="row">DESI13EF</th>
-            <td class="table-light">
-              <p>Luis Sinsel</p>
-            </td>
-            <td class="table-light">M-W  9-11</td>
-            <td class="table-light">T-208</td>
-            <td class="table-light">Spanish</td>
-            <td class="table-light">
-              <button id="pencil" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
-                class="fas fa-pencil-alt"></i></button>
-            </td>
-            <td class="table-light">
-              <button id="pencil" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
-                class="fas fa-trash-alt"></i></button>
-            </td>
-          </tr>
-
-          <tr>
-            <th class="table-light" scope="row">DESI13EF</th>
-            <td class="table-light">
-              <p>Luis Sinsel</p>
-            </td>
-            <td class="table-light">M-W  9-11</td>
-            <td class="table-light">T-208</td>
-            <td class="table-light">Spanish</td>
-            <td class="table-light">
-              <button id="pencil" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
-                class="fas fa-pencil-alt"></i></button>
-            </td>
-            <td class="table-light">
-              <button id="pencil" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
-                class="fas fa-trash-alt"></i></button>
-            </td>
-          </tr>
-
-          <tr>
-            <th class="table-light" scope="row">DESI13EF</th>
-            <td class="table-light">
-              <p>Luis Sinsel</p>
-            </td>
-            <td class="table-light">M-W  9-11</td>
-            <td class="table-light">T-208</td>
-            <td class="table-light">Spanish</td>
-            <td class="table-light">
-              <button id="pencil" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
-                class="fas fa-pencil-alt"></i></button>
-            </td>
-            <td class="table-light">
-              <button id="pencil" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
-                class="fas fa-trash-alt"></i></button>
-            </td>
-          </tr>
-
-          <tr>
-            <th class="table-light" scope="row">DESI13EF</th>
-            <td class="table-light">
-              <p>Luis Sinsel</p>
-            </td>
-            <td class="table-light">M-W  9-11</td>
-            <td class="table-light">T-208</td>
-            <td class="table-light">Spanish</td>
-            <td class="table-light">
-              <button id="pencil" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
-                class="fas fa-pencil-alt"></i></button>
-            </td>
-            <td class="table-light">
-              <button id="pencil" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
-                class="fas fa-trash-alt"></i></button>
-            </td>
-          </tr>
-
-      
-        </tbody>
-      </table>
-      
     </div>
     </div>
-
     </div>
   </div>
 
@@ -341,7 +219,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text">Code</span>
                     </div>
-                    <input required type="text" class="form-control col-10" id="nameSearch" placeholder="Name">
+                    <input required type="text" class="form-control col-10" id="code" placeholder="Class ID">
                   </div>
                 </div>
                 <div class="row">
@@ -349,7 +227,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text">Subject</span>
                     </div>
-                    <input required type="text" class="form-control col-10" id="classSubject" placeholder="Department">
+                    <input required type="text" class="form-control col-10" id="classSubj" placeholder="Subject">
                   </div>
                 </div>
                 <div class="row">
@@ -357,7 +235,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text">Classroom</span>
                     </div>
-                    <input required type="text" class="form-control col-10" id="classDepartment" placeholder="Department">
+                    <input required type="text" class="form-control col-10" id="classGr" placeholder="Classroom">
                   </div>
                 </div>
                 <div class="row">
@@ -365,7 +243,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text">Professor</span>
                     </div>
-                    <input required type="text" class="form-control col-10" id="classProfessor" placeholder="Department">
+                    <input required type="text" class="form-control col-10" id="classProf" placeholder="Professor">
                   </div>
                 </div>
                 <div class="row">
@@ -414,12 +292,12 @@
                   <div class="input-group mb-3 d-flex align-items-center justify-content-center">
                     <span class="input-group-text mr-2">Days</span>
                     <div id="daySearch">
-                      <button id="mon" type="button" class="btn btn-info btn-sm" style="padding-left: 7px;">M</button>
-                      <button id="tue" type="button" class="btn btn-info btn-sm">T</button>
-                      <button id="wed" type="button" class="btn btn-info btn-sm" style="padding-left: 7px;">W</button>
-                      <button id="thu" type="button" class="btn btn-info btn-sm">T</button>
-                      <button id="fri" type="button" class="btn btn-info btn-sm">F</button>
-                      <button id="sat" type="button" class="btn btn-info btn-sm">S</button>
+                      <button id="mon" type="button" class="btn btn-info btn-sm" style="padding-left: 7px;">MON</button>
+                      <button id="tue" type="button" class="btn btn-info btn-sm">TUE</button>
+                      <button id="wed" type="button" class="btn btn-info btn-sm" style="padding-left: 7px;">WED</button>
+                      <button id="thu" type="button" class="btn btn-info btn-sm">THU</button>
+                      <button id="fri" type="button" class="btn btn-info btn-sm">FRI</button>
+                      <button id="sat" type="button" class="btn btn-info btn-sm">SAT</button>
                     </div>
                   </div>
                 </div>   
@@ -429,7 +307,7 @@
           </div>  
         </div>
         <div class="modal-footer">
-          <button id="addG" type="button" class="btn" style="background-color: #5bc0de; color: white;">
+          <button onclick= "addGroup(event)" id="addG" type="button" class="btn" style="background-color: #5bc0de; color: white;">
             Add group
           </button>
           <button type="button" class="btn" data-dismiss="modal" style="background-color: #7bbccf;color: white;">
@@ -440,8 +318,11 @@
     </div>
   </div>
 
-    <!-- Optional JavaScript -->
-    <script src="../AJAX/group_utils.js"></script>
+        <!-- Optional JavaScript -->
+  <script src="localStorage.js"></script>
+  <script src="ajax_handler.js"></script>
+  <script src="group_utils.js"></script>
+
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">

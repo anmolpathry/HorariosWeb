@@ -7,7 +7,14 @@ html,body{
     max-width: 100%;
     overflow-x: hidden;
 }
-    
+
+.alert{
+    position: fixed;
+    z-index: 2;
+    top: 190px;
+    left: 500px;
+}
+
 .navbar{
     box-shadow: 0 0 7px 0 rgba(0,0,0,0.1);
 }
@@ -55,7 +62,7 @@ html,body{
 }
 
 #daySearch button{
-    width: 30px;
+    width: 45px;
     vertical-align: middle;
     border-radius: 20px;
 }

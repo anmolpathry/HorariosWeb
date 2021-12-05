@@ -3,7 +3,6 @@
 const subjects_url = "http://localhost:8080/subjects/";
 
 let subjectRow = document.getElementById('subjectRow');
-//console.log(scheduleClasses);
 
 let email = JSON.parse(readSession()).email;
 console.log(email);
@@ -32,12 +31,6 @@ function displaySubjects() {
             //console.log(name);
             s += subRowToHTML(name, department, credits);
 
-            /* for(let i=0; i < schedule.groups.length; i++){
-          loadClasses(group_url + schedule.groups[i]).then(group => {
-              console.log(group)});
-              console.log(group_url + "hola");
-           
-          }*/
         });
 
         subjectRow.innerHTML = s + '\n</div>';
