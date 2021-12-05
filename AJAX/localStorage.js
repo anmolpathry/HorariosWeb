@@ -13,11 +13,11 @@ function writeUserStorage(response){
 
 function readSessionStorage(){
     let sched = sessionStorage.getItem('sched');
-    console.log(sched);
+    //console.log(sched);
     return sched;
  }
  
  function writeSessionStorage(response){
-     console.log(response);
+     //console.log(response);
      sessionStorage.setItem('sched', response);
  }

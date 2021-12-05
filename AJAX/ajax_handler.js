@@ -109,6 +109,14 @@ function deleteSchedule(url, onSuccess, onError){
     xhr.onload = () => getXhrResponse(xhr,onSuccess, onError);
 }
 
+function deleteGroupFromSchedule(url, onSuccess, onError){
+    let xhr = new XMLHttpRequest();
+
+    xhr.open('DELETE',url);
+    xhr.send();
+    xhr.onload = () => getXhrResponse(xhr,onSuccess, onError);
+}
+
 //AJAX SUBJECTS
 function postSubject(url, subject, onSuccess, onError){
     let xhr = new XMLHttpRequest();

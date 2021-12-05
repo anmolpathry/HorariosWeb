@@ -323,173 +323,113 @@
         <div class="col">
           <input type="text" id="scheduleName" minlength="1" maxlength="20" value="Horario 1" disabled>
         </div>
-        <div id="editNameButtons" class="col-sm-md-2 mr-3">
-          <a id="editName" type="button" class="btn btn-lg" style="background-color: transparent;"> 
+        <div  id="editName" class="col-sm-md-2 mr-3">
+          <a onclick="editName(event)" id="editName" type="button" class="btn btn-lg btn-info" style="background-color: transparent;"> 
             <i style="color:#678da8; " class="fas fa-pen"></i>
           </a>  
-          <a id="changeName" type="button" class="btn btn-lg" style="background-color: transparent;" hidden> 
+          <a onclick="changeName(event)" id="changeName" type="button" class="btn btn-lg btn-success" style="background-color: transparent;" hidden > 
             <i style="color:#678da8; " class="fas fa-check"></i>
           </a>
-          <a id="cancelName" type="button" class="btn btn-lg" style="background-color: transparent;" hidden> 
+          <a onclick= "cancelName(event)" id="cancelName" type="button" class="btn btn-lg btn-danger" style="background-color: transparent;" hidden> 
             <i style="color:#678da8; " class="fas fa-times"></i>
           </a>
         </div>
       </div>
 
-      <table class="table table-sm table-bordered">
+      <table id="s" class="table table-sm table-bordered">
         <thead class="table-secondary">
           <tr>
             <th scope="col">Period</th>
-            <th scope="col">Monday</th>
-            <th scope="col">Tuesday</th>
-            <th scope="col">Wednesday</th>
-            <th scope="col">Thursday</th>
-            <th scope="col">Friday</th>
-            <th scope="col">Saturday</th>
+            <th scope="col" id="MON">Monday</th>
+            <th scope="col" id="TUE">Tuesday</th>
+            <th scope="col" id="WED">Wednesday</th>
+            <th scope="col" id="THU">Thursday</th>
+            <th scope="col" id="FRI">Friday</th>
+            <th scope="col" id="SAT">Saturday</th>
           </tr>
         </thead>
         <tbody>
-          <tr id="7-9">
+          <tr id="7">
             <th class="table-light" scope="row">7:00-9:00</th>
-            <td class="table-success">
-              <p title="DASW" >DASW</p>
-              <p title="DESI13EF">DESI13EF</p>
+            <td id="MON" class="table-light">
+             
             </td>
-            <td class="table-light"></td>
-            <td class="table-success">
-              <p title="DASW" >DASW</p>
-              <p title="DESI13EF">DESI13EF</p>
+            <td id="TUE" class="table-light"></td>
+            <td id="WED" class="table-light">
+             
             </td>
-            <td class="table-light"></td>
-            <td class="table-light"></td>
-            <td class="table-light"></td>
+            <td id="THU" class="table-light"></td>
+            <td id="FRI" class="table-light"></td>
+            <td id="SAT" class="table-light"></td>
           </tr>
-          <tr id="9-11">
+          <tr id="9">
             <th class="table-light" scope="row">9:00-11:00</th>
-            <td class="table-light"></td>
-            <td class="table-success">
-              <p title="Estrategias" >Estrategias</p>
-              <p title="DESI56F">DESI56F</p>
+            <td id="MON" class="table-light"></td>
+            <td id="TUE" class="table-light">
+              
             </td>
-            <td class="table-light"></td>
-            <td class="table-success">
-              <p title="Estrategias" >Estrategias</p>
-              <p title="DESI56F">DESI56F</p>
+            <td id="WED" class="table-light"></td>
+            <td id="THU" class="table-light">
+             
             </td>
-            <td class="table-light"></td>
-            <td class="table-light"></td>
+            <td id="FRI" class="table-light"></td>
+            <td id="SAT" class="table-light"></td>
           </tr>
-          <tr id="11-13">
+          <tr id="11">
             <th class="table-light" scope="row">11:00-13:00</th>
-            <td class="table-light"></td>
-            <td class="table-light"></td>
-            <td class="table-light"></td>
-            <td class="table-light"></td>
-            <td class="table-light"></td>
-            <td class="table-light"></td>
+            <td id="MON" class="table-light"></td>
+            <td id="TUE" class="table-light"></td>
+            <td id="WED" class="table-light"></td>
+            <td id="THU" class="table-light"></td>
+            <td id="FRI" class="table-light"></td>
+            <td id="SAT" class="table-light"></td>
           </tr>
-          <tr id="13-15">
+          <tr id="13">
             <th class="table-light" scope="row">13:00-15:00</th>
-            <td class="table-light"></td>
-            <td class="table-light"></td>
-            <td class="table-light"></td>
-            <td class="table-light"></td>
-            <td class="table-light"></td>
-            <td class="table-light"></td>
+            <td id="MON" class="table-light"></td>
+            <td id="TUE" class="table-light"></td>
+            <td id="WED" class="table-light"></td>
+            <td id="THU" class="table-light"></td>
+            <td id="FRI" class="table-light"></td>
+            <td id="SAT" class="table-light"></td>
           </tr>
-          <tr id="16-18">
+          <tr id="16">
             <th class="table-light" scope="row">16:00-18:00</th>
-            <td class="table-light"></td>
-            <td class="table-light"></td>
-            <td class="table-light"></td>
-            <td class="table-light"></td>
-            <td class="table-success">
-              <p title="Fé y cultura" >Fé y cultura</p>
-              <p title="DESI13EF">DFH987F</p>
+            <td id="MON" class="table-light"></td>
+            <td id="TUE" class="table-light"></td>
+            <td id="WED" class="table-light"></td>
+            <td id="THU" class="table-light"></td>
+            <td id="FRI" class="table-light">
+             
             </td>
-            <td class="table-light"></td>
+            <td id="SAT" class="table-light"></td>
           </tr>
-          <tr id="18-20">
+          <tr id="18">
             <th class="table-light" scope="row">18:00-20:00</th>
-            <td class="table-light"></td>
-            <td class="table-light"></td>
-            <td class="table-light"></td>
-            <td class="table-light"></td>
-            <td class="table-light"></td>
-            <td class="table-light"></td>
+            <td id="MON" class="table-light"></td>
+            <td id="TUE" class="table-light"></td>
+            <td id="WED" class="table-light"></td>
+            <td id="THU" class="table-light"></td>
+            <td id="FRI" class="table-light"></td>
+            <td id="SAT" class="table-light"></td>
           </tr>
-          <tr id="20-22">
+          <tr id="20">
             <th class="table-light" scope="row">20:00-22:00</th>
-            <td class="table-light"></td>
-            <td class="table-light"></td>
-            <td class="table-light"></td>
-            <td class="table-light"></td>
-            <td class="table-light"></td>
-            <td class="table-light"></td>
+            <td id="MON" class="table-light"></td>
+            <td id="TUE" class="table-light"></td>
+            <td id="WED" class="table-light"></td>
+            <td id="THU" class="table-light"></td>
+            <td id="FRI" class="table-light"></td>
+            <td id="SAT" class="table-light"></td>
           </tr>
         </tbody>
       </table>
 
       <div class="row">
         <div id="scheduleClasses" class="col justify-content-center">
-          <div class="card mb-3">
-            <div class="row">
-              <div class="col-1 ml-5 d-flex justify-content-center align-items-center">
-                <button id="pencil" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
-                    class="fas fa-trash-alt"></i></button>
-              </div>
-              <div class="col ml-0 pl-0">
-                <div class="card-body d-flex justify-content-around align-middle flex-wrap">
-                  <card>Professor: Maria rosales</card>
-                  <card>Classroom: A-208</card>
-                  <card>Language: Spanish</card>
-                </div>
-              </div>
-            </div>
-            <div id="scheduleName" class="card-footer">DASW  DESI13EF</div> 
-          </div>
 
-          <div class="card mb-3">
-            <div class="row">
-              <div class="col-1 ml-5 d-flex justify-content-center align-items-center">
-                <button id="pencil" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
-                    class="fas fa-trash-alt"></i></button>
-              </div>
-              <div class="col ml-0 pl-0">
-                <div class="card-body d-flex justify-content-around align-middle flex-wrap">
-                  <card>Professor: Luis Sanchez</card>
-                  <card>Classroom: T-209</card>
-                  <card>Language: Spanish</card>
-                </div>
-              </div>
-            </div>
-            <div id="scheduleName" class="card-footer">Estrategias  DESI56F</div> 
-          </div>
-
-          <div class="card mb-3">
-            <div class="row">
-              <div class="col-1 ml-5 d-flex justify-content-center align-items-center">
-                <button id="pencil" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
-                    class="fas fa-trash-alt"></i></button>
-              </div>
-              <div class="col ml-0 pl-0">
-                <div class="card-body d-flex justify-content-around align-middle flex-wrap">
-                  <card>Professor: Diego Lopez</card>
-                  <card>Classroom: En linea</card>
-                  <card>Language: Spanish</card>
-                </div>
-              </div>
-            </div>
-            <div id="scheduleName" class="card-footer">Fé y Cultura  DFH987F</div> 
-          </div>
-          
         </div>
-        <div class="col-2 ">
-          <div class="container d-flex flex-column align-items-center justify-content-center h-100">
-            <button id="save" type="button" style="background-color:#5476cb; color:white;" class="btn btn-block btn-sm">Save</button>
-            <button id="cancel" type="button" style="background-color:#86b1cf; color:white;" class="btn btn-block btn-sm">Cancel</button>
-          </div>
-        </div>
+       
       
 
       </div>
@@ -497,7 +437,11 @@
   
   </div>
 
-    <!-- Optional JavaScript -->
+     <!-- Optional JavaScript -->
+  <script src="localStorage.js"></script>
+  <script src="ajax_handler.js"></script>
+  <script src="manage_schedule_utils.js"></script>
+
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
