@@ -19,7 +19,6 @@ function createUser(req, res) {
     user.save().then((user) => {
         res.set('Content-Type', 'text/plain; charset=utf-8');
         res.send(`User ${user.name} was created!`);
-        console.log(user);
     });
 }
 
@@ -70,7 +69,11 @@ function login(req, res) {
 //User Schedules
 function getSchedules(req, res) {
     let email = req.params.email;
-    User.findOne({ email: `${email}` }).select('schedules -_id').then(schedules => res.status(200).json(schedules));
+    User.findOne({ email: `${email}` }).select('schedules -_id').then(schedules => res.status(200).json(schedules))
+    .catch(err => {           
+        res.set('Content-Type', 'text/plain; charset=utf-8');
+        res.status(404).send(`User not found`);
+    });;
 }
 
 function createSchedule(req, res) {
@@ -87,18 +90,19 @@ function createSchedule(req, res) {
             }
         }}, (err, result) => {
             console.log(err);
-    });
-
-    User.findOne({ email: `${email}` }).select('schedules -_id')
-        .then((schedule) => {
+    }).then((user) => {
         res.set('Content-Type', 'text/plain; charset=utf-8');
         res.send(`Schedule ${newSchedule.name} was created!`);
+    }).catch(err => {
+        res.status(400);            
+        res.set('Content-Type', 'text/plain; charset=utf-8');
+        res.send(`Error creating schedule`);
     });
 }
 
 function getScheduleByName(req, res) {
     let email = req.params.email;
-    let name = req.params.name;
+    let name = req.params.schedName;
     User.findOne({email:`${email}`, "schedules.name":`${name}`},{ "schedules.$": 1 }).select('-_id')
         .then(schedule => res.status(200).json(schedule.schedules[0]))
         .catch(err => {
@@ -110,30 +114,32 @@ function getScheduleByName(req, res) {
 
 function updateSchedule(req, res) {
     let email = req.params.email;
-    let name = req.params.name;
+    let name = req.params.schedName;
     let updatedSchedule = req.body;
     for (let property in updatedSchedule) {
         if (['name','period','groups'].includes(property)) continue;
         delete updatedSchedule[property];
     }
+    
     User.findOneAndUpdate({ email: `${email}`, "schedules.name":`${name}`}, {
         $set: {
-            schedules: { name: `${name}`},
-            
+            "schedules.$.name": updatedSchedule.name, 
+            "schedules.$.groups": updatedSchedule.groups, 
+            "schedules.$.period": updatedSchedule.period
         }}
     ).then(user => {
         res.type('text/plain; charset=utf-8');
-        res.send(`${user.name}'s schedule ${name} was deleted`);
+        res.status(200).send(`${user.name}'s schedule ${name} was updated`);
     }).catch(err => {
         res.status(404);            
         res.set('Content-Type', 'text/plain; charset=utf-8');
         res.send(`Schedule not found`);
     });
-}/**/
+}
 
 function deleteSchedule(req, res) {
     let email = req.params.email;
-    let name = req.params.name;
+    let name = req.params.schedName;
     
     User.findOneAndUpdate({ email: `${email}` }, {
         $pull: {
@@ -141,7 +147,7 @@ function deleteSchedule(req, res) {
         }}, {safe:true, multi:false}
     ).then(user => {
         res.type('text/plain; charset=utf-8');
-        res.send(`${user.name}'s schedule ${name} was deleted`);
+        res.status(200).send(`${user.name}'s schedule ${name} was deleted`);
     }).catch(err => {
         res.status(404);            
         res.set('Content-Type', 'text/plain; charset=utf-8');
@@ -149,25 +155,64 @@ function deleteSchedule(req, res) {
     });
 
 }
-/*
+
 function addGroupToSchedule(req, res) {
     let email = req.params.email;
-    let name = req.params.name;
-    let groupCode = req.params.groupCode;
-    User.findOne({ email: `${email}` }).schedules.groups.push(schedule);
-    User.save().then((schedule) => {
+    let name = req.params.schedName;
+    let newGroup = req.body.code;
+
+    User.findOneAndUpdate({ email: `${email}`, "schedules.name":`${name}`}, {
+        $push: {
+            "schedules.$.groups": newGroup
+        }}
+    ).then(user => {
+        res.type('text/plain; charset=utf-8');
+        res.status(200).send(`${user.name} has added ${newGroup} to schedule ${name}!`);
+    }).catch(err => {
+        res.status(404);            
         res.set('Content-Type', 'text/plain; charset=utf-8');
-        res.send(`Schedule ${schedule.name} was created!`);
+        res.send(`Schedule not found`);
     });
 }
 
-router.route('/users/:email/:name/:group')
-    .delete((req, res) => userHandler.deleteGroupFromSchedule(req, res));
-router.route('/users/schedules/groups/')
-    .get((req, res) => userHandler.getScheduleGroups(req, res));
+function addGroupToSchedule(req, res) {
+    let email = req.params.email;
+    let name = req.params.schedName;
+    let newGroup = req.body.code;
 
-*/
+    User.findOneAndUpdate({ email: `${email}`, "schedules.name":`${name}`}, {
+        $push: {
+            "schedules.$.groups": newGroup
+        }}
+    ).then(user => {
+        res.type('text/plain; charset=utf-8');
+        res.status(200).send(`${user.name} has added ${newGroup} to schedule ${name}!`);
+    }).catch(err => {
+        res.status(404);            
+        res.set('Content-Type', 'text/plain; charset=utf-8');
+        res.send(`Schedule not found`);
+    });
+}
 
+function deleteGroupFromSchedule(req, res) {
+    let email = req.params.email;
+    let name = req.params.schedName;
+    let group = req.params.groupCode;
+
+    User.findOneAndUpdate({ email: `${email}`, "schedules.name":`${name}`}, {
+        $pull: {
+            "schedules.$.groups": group
+        }}, {safe:true, multi:false}
+    ).then(user => {
+        res.type('text/plain; charset=utf-8');
+        res.status(200).send(`${user.name} has deleted ${group} from schedule ${name}`);
+    }).catch(err => {
+        console.log(err);
+        res.status(404);            
+        res.set('Content-Type', 'text/plain; charset=utf-8');
+        res.send(`Schedule not found`);
+    });
+}
 
 exports.getUsers = getUsers;
 exports.getUserByEmail = getUserByEmail;
@@ -180,5 +225,5 @@ exports.createSchedule = createSchedule;
 exports.getScheduleByName = getScheduleByName;
 exports.updateSchedule = updateSchedule;
 exports.deleteSchedule = deleteSchedule;
-/*exports.createSchedule = createSchedule;
-*/
+exports.addGroupToSchedule = addGroupToSchedule;
+exports.deleteGroupFromSchedule = deleteGroupFromSchedule;

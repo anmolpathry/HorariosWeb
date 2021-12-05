@@ -32,16 +32,17 @@ router.route('/users/schedules/:email')
     .get((req, res) => userHandler.getSchedules(req, res))
     .post((req, res) => userHandler.createSchedule(req, res));
 
-router.route('/users/schedules/:email/:name')
+router.route('/users/schedules/:email/:schedName')
     .get((req, res) => userHandler.getScheduleByName(req, res))
     .delete((req, res) => userHandler.deleteSchedule(req, res))
     .put((req, res) => userHandler.updateSchedule(req, res));
-/*
-router.route('/users/schedules/:email/:name/:group')
+
+router.route('/users/schedules/groups/:email/:schedName')
+    .post((req, res) => userHandler.addGroupToSchedule(req, res))
+
+router.route('/users/schedules/groups/:email/:schedName/:groupCode')
     .delete((req, res) => userHandler.deleteGroupFromSchedule(req, res));
-router.route('/users/schedules/groups/')
-    .get((req, res) => userHandler.getScheduleGroups(req, res));
-*/
+    
 //GROUPS
 router.route('/groups/')
     .get((req, res) => groupHandler.getGroups(req, res))
