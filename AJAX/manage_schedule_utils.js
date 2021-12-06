@@ -3,10 +3,12 @@
 //schedule que sacaste
 const schedules_url = "http://localhost:8080/users/schedules/" 
 //(agregar email y name para hacer GET, PUT y DELETE)
-const group_url = "http://localhost:8080/groups/"
+const group_url = "http://localhost:8080/groups"
 
 const deleteGr_url = "http://localhost:8080/users/schedules/groups/"
 //(agregar email, name, y code de grupo)
+
+const subj_url = "http://localhost:8080/subjects/"
 
 let email = JSON.parse(readSession()).email;
 console.log(email);
@@ -23,8 +25,8 @@ scheduleName.value = schedName;
 let selectedSchedule = schedName;
 let clases = "";
 
-let table = document.getElementsByClassName('table')[0].querySelector('tbody');
-console.log(table);
+let classesTable = document.getElementsByClassName('table')[0].querySelector('tbody');
+//console.log(classesTable);
 
 let schedTable = document.getElementsByClassName('table')[1].querySelector('tbody');
 //console.log(schedTable);
@@ -37,7 +39,7 @@ function loadGroups(name) {
     loadSchedule(schedules_url + email + '/' + name).then(schedule => {
      
       for (let i = 0; i < schedule.groups.length; i++) {
-        loadClasses(group_url + schedule.groups[i]).then(group => {
+        loadClasses(group_url+ '/' + schedule.groups[i]).then(group => {
           let name = group.subject;
           let code = group.code;
           let professor = group.professor;
@@ -202,3 +204,83 @@ function deleteGroupSchedule(code){
 }
 
 //loadGroups(selectedSchedule);
+
+//TABLA DE MATERIAS Y CLASES
+let subjectRow = document.getElementById('subjectsList');
+
+function displaySubjects() {
+  loadSubjects(subj_url).then(subjects => {
+
+      let subj = subjects;
+      let s = "";
+
+      Object.values(subj).forEach(subject => {
+          let name = subject.name;
+          let department = subject.department;
+          let credits = subject.credits;
+
+          //console.log(name);
+          s += subRowToHTML(name, department, credits);
+
+      });
+
+      subjectRow.innerHTML = s + '\n</div>';
+
+  });
+
+}
+
+displaySubjects();
+
+//Function To HTML
+function subRowToHTML(name, department, credits) {
+    //console.log(name);
+    return `
+    <li class="list-group-item d-flex align-items-center">
+    <div class="col-3 p-0 m-0" id="department">${department}</div>
+    <div class="col-2 m-0" id="credits">${credits}</div>
+    <div class="col-sm-4 col-md-5 m-0" id="name">${name}</div>
+    <span class="ml-auto"><button onclick="viewClasses('${name}')" id="details" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#classesModal">
+        <i style="color:white;" class="fas fa-info-circle"></i>
+    </button></span>
+  </li>
+    `
+}
+
+//Obtener clases de una materia
+//classesTable
+
+function viewClasses(name){
+  let s = "";
+  loadClasses(group_url+'?subject=' + name).then(groups => {
+    
+    console.log(groups);
+
+    Object.values(groups).forEach(group => {
+        console.log(group.days)
+
+       let id = group.code;
+       let prof = group.professor;
+       let days = group.days.map((day)=> day[0]).join('-');
+       let hours = group.hours;
+       let classroom = group.classroom;
+       let language = group.language;
+       let subject = group.subject;
+
+       console.log(days);
+
+       s += `
+      <tr>
+      <td>${id}</td>
+      <td>${days}</td>
+      <td>${hours}</td>
+      <td>${prof}/td>
+      <td>${language}</td>
+      <td>${classroom}</td>
+    </tr>
+      `
+      });
+      //console.log(name);
+      classesTable.innerHTML = s;
+  });
+}
