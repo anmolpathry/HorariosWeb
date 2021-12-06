@@ -1,6 +1,6 @@
 "use strict";
 
-const groups_url = "http://localhost:8080/groups";
+const groups_url = "https://schedulemakerweb.herokuapp.com/groups";
 
 let tableContainer = document.getElementById('tableContainer');
 let Subject = document.getElementById('Subject');

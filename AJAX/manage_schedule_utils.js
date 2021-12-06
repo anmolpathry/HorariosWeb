@@ -1,14 +1,14 @@
 "use strict";
 
 //schedule que sacaste
-const schedules_url = "http://localhost:8080/users/schedules/" 
+const schedules_url = "https://schedulemakerweb.herokuapp.com/users/schedules/" 
 //(agregar email y name para hacer GET, PUT y DELETE)
-const group_url = "http://localhost:8080/groups"
+const group_url = "https://schedulemakerweb.herokuapp.com/groups"
 
-const deleteGr_url = "http://localhost:8080/users/schedules/groups/"
+const deleteGr_url = "https://schedulemakerweb.herokuapp.com/users/schedules/groups/"
 //(agregar email, name, y code de grupo)
 
-const subj_url = "http://localhost:8080/subjects/"
+const subj_url = "https://schedulemakerweb.herokuapp.com/subjects/"
 
 let email = JSON.parse(readSession()).email;
 console.log(email);

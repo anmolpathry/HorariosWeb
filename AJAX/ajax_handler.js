@@ -1,8 +1,11 @@
 "use strict";
 
 //RUTAS QUE SE USARAN
-const login = 'http://localhost:8080/login'
-const signup = 'http://localhost:8080/users'
+/*const login = 'http://localhost:8080/login'
+const signup = 'http://localhost:8080/users' */
+
+const login = "https://schedulemakerweb.herokuapp.com/login"
+const signup = "https://schedulemakerweb.herokuapp.com/signup"
 
 async function loadSchedules(schedules_url) {
     let response = await fetch(schedules_url);
@@ -48,10 +51,10 @@ async function postLogin(){
 
         if(JSON.parse(response).role == "ADMIN"){
             //console.log(readSession());
-            window.location.href = 'http://localhost:8080/admin-subjects'
+            window.location.href = 'https://schedulemakerweb.herokuapp.com/admin-subjects'
         }else{
             //console.log(readSession());
-            window.location.href = 'http://localhost:8080/home'
+            window.location.href = 'https://schedulemakerweb.herokuapp.com/home'
         }
     }
     return false;
@@ -75,7 +78,7 @@ function signUp(){
     xhr.send(JSON.stringify(usr));
     xhr.onreadystatechange = function(){
         if(this.status==200 && this.readyState ==4){
-            window.location.href = 'http://localhost:8080/login'
+            window.location.href = 'https://schedulemakerweb.herokuapp.com/login'
         }
     }
     return false;

@@ -1,8 +1,8 @@
 "use strict";
 
 //schedule que sacaste
-const schedules_url = "http://localhost:8080/users/schedules/"
-const group_url = "http://localhost:8080/groups/"
+const schedules_url = "https://schedulemakerweb.herokuapp.com/users/schedules/"
+const group_url = "https://schedulemakerweb.herokuapp.com/groups/"
 
 let schedulesList = document.getElementById('scheduleList');
 console.log(schedulesList);
@@ -224,5 +224,5 @@ function changeWindow(event) {
   let schedName = document.getElementById('schedName').innerHTML
   //console.log(JSON.parse(readSession) );
   writeSessionStorage(schedName);
-  window.location.href = 'http://localhost:8080/manage-schedule'
+  window.location.href = 'https://schedulemakerweb.herokuapp.com/manage-schedule'
 }

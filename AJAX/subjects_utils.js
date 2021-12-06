@@ -1,6 +1,6 @@
 "use strict";
 
-const subjects_url = "http://localhost:8080/subjects";
+const subjects_url = "https://schedulemakerweb.herokuapp.com/subjects";
 
 let subjectRow = document.getElementById('subjectRow');
 
