@@ -131,6 +131,14 @@ html,body{
         -webkit-box-orient: vertical;
         margin-bottom: 0;
     }
+
+    #classesTable tbody tr{
+        cursor: pointer;
+    }
+
+    #classesTable tbody tr:hover{
+        background-color: rgb(203, 248, 233);
+    }
     
     #classesModal{
         position: absolute;

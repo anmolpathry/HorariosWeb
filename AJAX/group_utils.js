@@ -174,7 +174,7 @@ function saveChanges(event){
        "classroom": clasr.value,
        "professor": prof.value,
        "language": lang.value,
-       "days": sch.value.split(" ")[0],
+       "days": sch.value.split(" ")[0].split(","),
        "hours": sch.value.split(" ")[1]
     }
 

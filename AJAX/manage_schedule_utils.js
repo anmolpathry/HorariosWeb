@@ -35,10 +35,12 @@ loadGroups(selectedSchedule);
 
 //obtener grupos
 function loadGroups(name) {
-    //console.log("holaaa");
+    console.log("holaaa");
     loadSchedule(schedules_url + email + '/' + name).then(schedule => {
-     
+      document.getElementById("scheduleClasses").innerHTML = "";
+      clases = "";
       for (let i = 0; i < schedule.groups.length; i++) {
+        console.log(schedule.groups[i]);
         loadClasses(group_url+ '/' + schedule.groups[i]).then(group => {
           let name = group.subject;
           let code = group.code;
@@ -47,11 +49,14 @@ function loadGroups(name) {
           let language = group.language;
           let days = group.days;
           let hours = group.hours;
-  
+
+          
+          scheduleToHTML(name, code, days, hours);
+
           clases += classToHTML(name, code, professor, classroom, language);
           //console.log(i);
-          changeInnerHTML(scheduleClasses, clases)
-          scheduleToHTML(name, code, days, hours);
+          changeInnerHTML(scheduleClasses, clases);
+          
           //changeTableHTML(sched);
         });
       }
@@ -103,14 +108,17 @@ var DaysEnum = {
     SAT : 5
   };
   
+  let groupsArray = []; 
+
   function scheduleToHTML(name, code, days, hours) {
+    if (groupsArray.findIndex(g => g.code == code) != -1) return ""; 
     for(let i=0; i<days.length; i++){
       let rowNum = parseInt(hours.split("-")[0])-7;
       let row = schedTable.querySelector('tr:nth-of-type(n+'+rowNum+')');
   
       let colNum = DaysEnum[days[i]]+1;
       let cell = row.querySelector('td:nth-of-type(n+'+colNum+')');
-    
+ 
       //console.log(cell);
 
       cell.innerHTML = 
@@ -121,7 +129,7 @@ var DaysEnum = {
       cell.classList.remove('table-light');
       cell.classList.add('table-success');
     }
-    
+    groupsArray.push({subject: name, code: code, days: days, hours: hours});
   }
 
 let oldName = "";
@@ -196,10 +204,10 @@ function deleteGroupSchedule(code){
     //Llamada a AJAX
     deleteGroupFromSchedule(deleteGr_url + email + '/' + selectedSchedule + '/' + code, msg => {
         console.log(msg);
-        //loadGroups(selectedSchedule) 
+        window.location.href = 'http://localhost:8080/manage-schedule'
     }, err => console.log(err));
 
-    //loadGroups(selectedSchedule) 
+    loadGroups(selectedSchedule) 
 
 }
 
@@ -250,37 +258,111 @@ function subRowToHTML(name, department, credits) {
 //Obtener clases de una materia
 //classesTable
 
+document.getElementById('minHour').addEventListener('change', function () {
+  minHour = this.value;
+});
+
+document.getElementById('maxHour').addEventListener('change', function () {
+  maxHour = this.value;
+});
+
+//DIAS
+document.getElementById('daySearch').addEventListener('click', (event) => {
+  if(event.target.nodeName === 'BUTTON'){
+      if(!days.includes(event.target.innerHTML)){
+          days.push(event.target.innerHTML);
+          event.target.style.background = '#6e77f0';
+      }else{
+          days.splice(days.indexOf(event.target.innerHTML),1);
+          event.target.style.background = '#5bc0de';
+      }
+      console.log(days);
+      //console.log(event.target.innerHTML);
+  }
+  
+}); 
+
 function viewClasses(name){
+  document.getElementById('classesForSubject').innerHTML = `Classes for ${name}`;
   let s = "";
   loadClasses(group_url+'?subject=' + name).then(groups => {
     
-    console.log(groups);
+    //console.log(groups);
 
     Object.values(groups).forEach(group => {
-        console.log(group.days)
 
        let id = group.code;
        let prof = group.professor;
-       let days = group.days.map((day)=> day[0]).join('-');
+       let days = group.days;
+       let shortDays = days.map((day)=> (day =="TUE" || day=="THU")? day.substring(0,2) :day[0]).join('-');
        let hours = group.hours;
        let classroom = group.classroom;
        let language = group.language;
        let subject = group.subject;
 
-       console.log(days);
-
-       s += `
-      <tr>
-      <td>${id}</td>
-      <td>${days}</td>
-      <td>${hours}</td>
-      <td>${prof}/td>
-      <td>${language}</td>
-      <td>${classroom}</td>
-    </tr>
-      `
+      s += `
+        <tr onclick="selectGroup('${id}','${days}','${hours}','${subject}', this)">
+        <td>${id}</td>
+        <td>${shortDays}</td>
+        <td>${hours}</td>
+        <td>${prof}/td>
+        <td>${language}</td>
+        <td>${classroom}</td>
+        </tr> `
       });
       //console.log(name);
       classesTable.innerHTML = s;
   });
 }
+
+let selectedClass = null;
+function selectGroup(code, days, hours, subject, row){
+  console.log("Groups Array:");
+  console.log(groupsArray);
+  if (selectedClass != null) selectedClass.row.style.background ="white";
+  row.style.background ="#b5e8fc";
+  selectedClass = {code: code, days:days, hours:hours, subject:subject, row:row};
+  console.log(selectedClass);
+}
+
+function verifyClass(group){
+  if (group == null) return false;
+  if (groupsArray.findIndex(g => g.subject == group.subject) != -1){
+    alert("Group from same subject already in schedule.");
+    return false;
+  }
+  let sameHours = groupsArray.filter(g => g.hours == group.hours);
+  if (sameHours.length == 0) return true;
+  let coincidences = sameHours.filter(g => g.days.some(gd=> group.days.includes(gd)));
+  if (coincidences.length == 0) return true;
+  alert(`${group.code} crosses with other groups!`);
+  return false;
+}
+
+//agregar clase con Modal POST
+function addGroupToSched(event) {
+  if(!verifyClass(selectedClass)) return;
+  let group = {
+    "code": selectedClass.code
+  }
+
+  //LLAMADA A AJAX
+  addGroupToSchedule(schedules_url + 'groups/' + email + '/' + schedName, group, msg => {
+      console.log(msg);
+      loadGroups(selectedSchedule);
+  }, err => console.log(err)); 
+
+  document.getElementById("closeModal").click();
+}
+
+function clearModal(){
+  selectedClass = null;
+  document.getElementById('professorSearch').value = "";
+  document.getElementById('classroomSearch').value = "";
+  let dayButtons = document.querySelectorAll('#daySearch button');
+  for (let i=0; i<dayButtons.length;i++)
+      dayButtons[i].style.background = "#5bc0de";
+  days = [];
+  groupsArray = [];
+}
+

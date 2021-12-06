@@ -8,11 +8,11 @@ const validateUtils = require('./validate_utils');
 const userHandler = require('./user_handler');
 const groupHandler = require('./group_handler');
 const subjectHandler = require('./subject_handler');
-
-/*router.use('/home.html', validateUtils.validateUser);
-router.use('/manage-schedule.html', validateUtils.validateUser);
-router.use('/admin-subjects.html', validateUtils.validateAdmin);
-router.use('/admin-groups.html', validateUtils.validateAdmin);*/
+/*
+router.use('/home', validateUtils.validateUser);
+router.use('/manage-schedule', validateUtils.validateUser);
+router.use('/admin-subjects', validateUtils.validateAdmin);
+router.use('/admin-groups', validateUtils.validateAdmin);*/
 
 //LOGIN
 router.route('/login')

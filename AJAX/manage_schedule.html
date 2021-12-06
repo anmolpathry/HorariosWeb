@@ -180,7 +180,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="classesForSubject" overflow:hidden>Classes</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button id="closeModal" type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -306,8 +306,8 @@
         
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn" style="background-color: #f06e9c; color: white;">Save changes</button>
-          <button type="button" class="btn" data-dismiss="modal" style="background-color: #bb285c;color: white;">Close</button>
+          <button id="addG" type="button" onclick="addGroupToSched(event)" class="btn" style="background-color: #f06e9c; color: white;">Save changes</button>
+          <button type="button" class="btn" data-dismiss="modal" onClick="clearModal()" style="background-color: #bb285c;color: white;">Close</button>
         </div>
       </div>
     </div>
