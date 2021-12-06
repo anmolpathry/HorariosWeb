@@ -52,39 +52,37 @@
   </div>
 </nav>
 
-
-<div id="content" class="col justify-content-center">
-  <div class="row">
-    <div id="topFilters" class="card col w-100">
-      <div class="card-body d-flex justify-content-around align-middle">
-        <div>
-          <button id="pencil" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
-              class="fas fa-filter"></i></button>
-        </div>
-        <div class="col-2">
-          <p style="background-color: rgb(197, 43, 102); text-align: center; color:white">Class ID</p>
-          <input style="height: 20px" type="text" class="form-control rounded bg-transparent border-secondary"
-            placeholder="Class ID">
-        </div>
-        <div class="col-2">
-          <p style="background-color: rgb(197, 43, 102); text-align: center; color:white">Language</p>
-          <input style="height: 20px" type="text" class="form-control rounded bg-transparent border-secondary"
-            placeholder="Language">
-        </div>
-        <div class="col-2">
-          <p style="background-color: rgb(197, 43, 102); text-align: center; color:white">Subject</p>
-          <input style="height: 20px" type="text" class="form-control rounded bg-transparent border-secondary"
-            placeholder="Class Subject">
-        </div>
-        <div class="col-2">
-          <p style="background-color: rgb(197, 43, 102); text-align: center; color:white">Professor</p>
-          <input style="height: 20px" type="text" class="form-control rounded bg-transparent border-secondary"
-            placeholder="Professor">
-        </div>
-      </div>
+<div id="topFilters" class="card">
+  <div class="card-body d-flex justify-content-around align-middle">
+    <div>
+      <button id="pencil" type="button" class="btn btn-dark btn-sm"> <i style="color:white;"
+          class="fas fa-filter"></i></button>
+    </div>
+    <div class="col-2">
+      <p style="background-color: rgb(197, 43, 102); text-align: center; color:white">Class ID</p>
+      <input style="height: 20px" type="text" class="form-control rounded bg-transparent border-secondary"
+        placeholder="Class ID">
+    </div>
+    <div class="col-2">
+      <p style="background-color: rgb(197, 43, 102); text-align: center; color:white">Language</p>
+      <input style="height: 20px" type="text" class="form-control rounded bg-transparent border-secondary"
+        placeholder="Language">
+    </div>
+    <div class="col-2">
+      <p style="background-color: rgb(197, 43, 102); text-align: center; color:white">Subject</p>
+      <input style="height: 20px" type="text" class="form-control rounded bg-transparent border-secondary"
+        placeholder="Class Subject">
+    </div>
+    <div class="col-2">
+      <p style="background-color: rgb(197, 43, 102); text-align: center; color:white">Professor</p>
+      <input style="height: 20px" type="text" class="form-control rounded bg-transparent border-secondary"
+        placeholder="Professor">
     </div>
   </div>
-  <div id="tableContainer" class="col-11 ml-5">
+</div>
+
+<div id="content" class="col d-flex justify-content-center">
+  <div id="tableContainer" class="col-10">
 
   </div>
 </div>
@@ -103,12 +101,7 @@
   </button>
 </div>
 
-
-</div>
-</div>
-</div>
-
-<a id="createGroupButton" data-toggle="modal" data-target="#createGroupModal" data-backdrop="false">
+<a id="createGroupButton" data-toggle="modal" data-target="#createGroupModal" >
   <i class="fa fa-plus-circle"></i>
 </a>
 
@@ -118,7 +111,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Add group</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button id="closeModal" type="button" class="close" data-dismiss="modal" onClick="clearModal()" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -188,7 +181,7 @@
                         <option value="9">9:00</option>
                         <option value="11">11:00</option>
                         <option value="13">13:00</option>
-                        <option value="16">16:00</option>
+                        <option value="15">15:00</option>
                         <option value="18">18:00</option>
                         <option value="20">20:00</option>
                         <option value="22" selected>22:00</option>
@@ -204,7 +197,7 @@
                 <div class="input-group mb-3 d-flex align-items-center justify-content-center">
                   <span class="input-group-text mr-2">Days</span>
                   <div id="daySearch">
-                    <button id="mon" type="button" class="btn btn-info btn-sm" style="padding-left: 7px;">MON</button>
+                    <button id="mon" type="button" class="btn btn-info btn-sm" style="padding-right: 20px;">MON</button>
                     <button id="tue" type="button" class="btn btn-info btn-sm">TUE</button>
                     <button id="wed" type="button" class="btn btn-info btn-sm" style="padding-left: 7px;">WED</button>
                     <button id="thu" type="button" class="btn btn-info btn-sm">THU</button>
@@ -223,7 +216,7 @@
           style="background-color: #5bc0de; color: white;">
           Add group
         </button>
-        <button type="button" class="btn" data-dismiss="modal" style="background-color: #7bbccf;color: white;">
+        <button type="button" class="btn" onClick="clearModal()" data-dismiss="modal" style="background-color: #7bbccf;color: white;">
           Cancel
         </button>
       </div>
