@@ -5,7 +5,7 @@ html,body{
     background-repeat: no-repeat;
     background-attachment: fixed;
     max-width: 100%;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 .alert{
@@ -17,6 +17,11 @@ html,body{
 
 .navbar{
     box-shadow: 0 0 7px 0 rgba(0,0,0,0.1);
+}
+
+#tableContainer{
+    overflow: scroll;
+    max-height: 80vh;
 }
 
 #createGroupButton{
@@ -66,6 +71,8 @@ html,body{
     width: 45px;
     vertical-align: middle;
     border-radius: 20px;
+    border-width: 0;
+    background-color: #5bc0de;
 }
 
 .table{
@@ -99,4 +106,23 @@ html,body{
     margin-bottom: 0;
 }
 
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    position: fixed;
+    right: 100px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #ccc;  
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #999;  
+}
+
+::-webkit-scrollbar-corner {
+    background-color: transparent;
+}
  

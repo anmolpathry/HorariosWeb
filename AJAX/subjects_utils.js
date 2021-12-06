@@ -1,6 +1,6 @@
 "use strict";
 
-const subjects_url = "http://localhost:8080/subjects/";
+const subjects_url = "http://localhost:8080/subjects";
 
 let subjectRow = document.getElementById('subjectRow');
 
@@ -83,19 +83,19 @@ function subRowToHTML(name, department, credits) {
 
 //onclick en editar: habilitar inputs, habilitar botones
 function editSubject(event) {
-    let edit = event.target;
-    let confirm = event.target.parentNode.getElementsByClassName('btn btn-success')[0];
-    let cancel = event.target.parentNode.getElementsByClassName('btn btn-danger')[0];
+    let edit = event.currentTarget;
+    let confirm = edit.parentNode.getElementsByClassName('btn btn-success')[0];
+    let cancel = edit.parentNode.getElementsByClassName('btn btn-danger')[0];
 
     edit.setAttribute("hidden", true);
     confirm.removeAttribute("hidden");
     cancel.removeAttribute("hidden");
 
-    //console.log(event.target.parentNode.parentNode);
+    //console.log(edit.parentNode.parentNode);
 
-    let name = event.target.parentNode.parentNode.getElementsByTagName('input')[0];
-    let depart = event.target.parentNode.parentNode.getElementsByTagName('input')[1];
-    let cred = event.target.parentNode.parentNode.getElementsByTagName('input')[2];
+    let name = edit.parentNode.parentNode.getElementsByTagName('input')[0];
+    let depart = edit.parentNode.parentNode.getElementsByTagName('input')[1];
+    let cred = edit.parentNode.parentNode.getElementsByTagName('input')[2];
 
     oldName = name.value;
     oldDep = depart.value;
@@ -109,7 +109,7 @@ function editSubject(event) {
 }
 //onclick en guardar: hacer document.getById, crear el objeto, promesa para funcion ajax
 function saveChanges(event) {
-    let parent = event.target.parentNode.parentNode;
+    let parent = event.currentTarget.parentNode.parentNode;
     let name = parent.getElementsByTagName('input')[0];
     let depart = parent.getElementsByTagName('input')[1];
     let cred = parent.getElementsByTagName('input')[2];
@@ -125,10 +125,10 @@ function saveChanges(event) {
         "credits": cred.value
     }
 
-    console.log(subjects_url + oldName);
+    console.log(subjects_url + "/" +oldName);
 
     //LLAMADA A AJAX
-    putSubject(subjects_url + oldName, subject, msg => {
+    putSubject(subjects_url + "/"+ oldName, subject, msg => {
         console.log(msg);
         displaySubjects();
     }, err => console.log(err));
@@ -143,7 +143,7 @@ function saveChanges(event) {
 }
 
 function cancelChanges(event) {
-    let parent = event.target.parentNode.parentNode;
+    let parent = event.currentTarget.parentNode.parentNode;
     let name = parent.getElementsByTagName('input')[0];
     let depart = parent.getElementsByTagName('input')[1];
     let cred = parent.getElementsByTagName('input')[2];
@@ -167,13 +167,13 @@ function cancelChanges(event) {
 
 //onclick en eliminar
 function deleteSubj(event) {
-    let parent = event.target.parentNode.parentNode;
+    let parent = event.currentTarget.parentNode.parentNode;
     console.log(parent);
     let name = parent.getElementsByTagName('input')[0].value;
-    console.log(subjects_url + name);
+    console.log(subjects_url + "/" + name);
 
     //LLAMADA A AJAX
-    deleteSubject(subjects_url + name, msg => {
+    deleteSubject(subjects_url + "/" + name, msg => {
         console.log(msg);
         displaySubjects();
     }, err => console.log(err));
@@ -203,4 +203,10 @@ function addSub(event) {
         displaySubjects();
     }, err => console.log(err));
 
+    document.getElementById("closeModal").click();
+}
+
+function clearModal(){
+    document.getElementById('modalName').value="";
+    document.getElementById('modalDepart').value="";
 }

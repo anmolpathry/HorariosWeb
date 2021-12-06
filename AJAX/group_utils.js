@@ -181,10 +181,10 @@ function saveChanges(event){
     //console.log(groups_url + oldId);
     console.log(group);
 
-    console.log(groups_url + oldId);
+    console.log(groups_url + "/" + oldId);
 
     //LLAMADA A AJAX
-    putGroup(groups_url + oldId, group, msg => {
+    putGroup(groups_url + "/" + oldId, group, msg => {
         console.log(msg);
         displayClasses();
     }, err => console.log(err));
@@ -231,13 +231,13 @@ function cancelChanges(event){
 }
 
 function deleteClass(event){
-    let parent = event.target.parentNode.parentNode;
+    let parent = event.currentTarget.parentNode.parentNode;
     console.log(parent);
     let id = parent.getElementsByTagName('input')[0].value;
-    console.log(groups_url + id);
+    console.log(groups_url + "/" + id);
 
     //LLAMADA A AJAX
-    deleteSubject(groups_url + id, msg => {
+    deleteSubject(groups_url + "/" + id, msg => {
         console.log(msg);
         displayClasses();
     }, err => console.log(err));
@@ -268,15 +268,16 @@ document.getElementById('daySearch').addEventListener('click', (event) => {
     if(event.target.nodeName === 'BUTTON'){
         if(!days.includes(event.target.innerHTML)){
             days.push(event.target.innerHTML);
+            event.target.style.background = '#6e77f0';
         }else{
             days.splice(days.indexOf(event.target.innerHTML),1);
+            event.target.style.background = '#5bc0de';
         }
+        console.log(days);
         //console.log(event.target.innerHTML);
     }
     
 }); 
-
-
 
 //agregar clase con Modal POST
 function addGroup(event) {
@@ -285,8 +286,6 @@ function addGroup(event) {
     let classSubj = document.getElementById('classSubj');
     let code = document.getElementById('code');
     let hours = minHour + "-" + maxHour;
-
-
 
     let group = {
         "code": code.value,
@@ -298,7 +297,6 @@ function addGroup(event) {
         "hours": hours
      }
  
-
     console.log(group);
 
     //LLAMADA A AJAX
@@ -307,4 +305,16 @@ function addGroup(event) {
         displayClasses();
     }, err => console.log(err)); 
 
+    document.getElementById("closeModal").click();
+}
+
+function clearModal(){
+    document.getElementById('classProf').value = "";
+    document.getElementById('classGr').value = "";
+    document.getElementById('classSubj').value = "";
+    document.getElementById('code').value = "";
+    let dayButtons = document.querySelectorAll('#daySearch button');
+    for (let i=0; i<dayButtons.length;i++)
+        dayButtons[i].style.background = "#5bc0de";
+    days = [];
 }
