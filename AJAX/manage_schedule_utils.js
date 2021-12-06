@@ -35,10 +35,15 @@ loadGroups(selectedSchedule);
 
 //obtener grupos
 function loadGroups(name) {
-    console.log("holaaa");
+    schedTable.querySelectorAll('td').forEach(cell => { 
+      cell.classList.remove('table-success');
+      cell.classList.add('table-light');
+      cell.innerHTML = "";
+    });
+    clases = "";
+    document.getElementById("scheduleClasses").innerHTML="";
     loadSchedule(schedules_url + email + '/' + name).then(schedule => {
-      document.getElementById("scheduleClasses").innerHTML = "";
-      clases = "";
+      
       for (let i = 0; i < schedule.groups.length; i++) {
         console.log(schedule.groups[i]);
         loadClasses(group_url+ '/' + schedule.groups[i]).then(group => {
@@ -111,7 +116,6 @@ var DaysEnum = {
   let groupsArray = []; 
 
   function scheduleToHTML(name, code, days, hours) {
-    if (groupsArray.findIndex(g => g.code == code) != -1) return ""; 
     for(let i=0; i<days.length; i++){
       let rowNum = parseInt(hours.split("-")[0])-7;
       let row = schedTable.querySelector('tr:nth-of-type(n+'+rowNum+')');
@@ -204,10 +208,11 @@ function deleteGroupSchedule(code){
     //Llamada a AJAX
     deleteGroupFromSchedule(deleteGr_url + email + '/' + selectedSchedule + '/' + code, msg => {
         console.log(msg);
-        window.location.href = 'http://localhost:8080/manage-schedule'
+        loadGroups(selectedSchedule);
+        //window.location.href = 'http://localhost:8080/manage-schedule'
     }, err => console.log(err));
 
-    loadGroups(selectedSchedule) 
+     
 
 }
 
