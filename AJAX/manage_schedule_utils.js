@@ -202,18 +202,14 @@ function cancelName(event){
 //eliminar clases
 function deleteGroupSchedule(code){
     console.log(code);
-
     console.log(deleteGr_url + email + '/' + selectedSchedule + '/' + code);
     
     //Llamada a AJAX
     deleteGroupFromSchedule(deleteGr_url + email + '/' + selectedSchedule + '/' + code, msg => {
         console.log(msg);
+        groupsArray = [];
         loadGroups(selectedSchedule);
-        //window.location.href = 'http://localhost:8080/manage-schedule'
     }, err => console.log(err));
-
-     
-
 }
 
 //loadGroups(selectedSchedule);
@@ -354,9 +350,9 @@ function addGroupToSched(event) {
   //LLAMADA A AJAX
   addGroupToSchedule(schedules_url + 'groups/' + email + '/' + schedName, group, msg => {
       console.log(msg);
+      groupsArray = [];
       loadGroups(selectedSchedule);
   }, err => console.log(err)); 
-
   document.getElementById("closeModal").click();
 }
 
@@ -368,6 +364,5 @@ function clearModal(){
   for (let i=0; i<dayButtons.length;i++)
       dayButtons[i].style.background = "#5bc0de";
   days = [];
-  groupsArray = [];
 }
 
